@@ -9,6 +9,11 @@ class Taobao extends CI_Controller {
 
     
     function index() {
+        $url = $this->input->cookie("original_url");
+        if ($url === FALSE || $url === "") {
+            $url = "http://sea.taobao.com";
+        }
+        
         if (!$this->checkLogin()) {
             redirect('/authenticate');
         }
@@ -16,7 +21,9 @@ class Taobao extends CI_Controller {
         $ch = curl_init(); 
 
         // set url 
-        curl_setopt($ch, CURLOPT_URL, "http://item.taobao.com/item.htm?spm=2013.1.0.0.LECn7C&scm=1007.10009.518.0&id=26754524142&pvid=5a899401-5357-4b2a-8f05-9f4641820784"); 
+        curl_setopt($ch, CURLOPT_URL, $url); 
+//        curl_setopt($ch, CURLOPT_URL, "http://www.1order.vn/frontpage/parserTB.action?method=cktb?d=1396250005116"); 
+        
 
         //return the transfer as a string 
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
@@ -25,12 +32,19 @@ class Taobao extends CI_Controller {
         $output = curl_exec($ch); 
 
         // close curl resource to free up system resources 
-        curl_close($ch);    
+        curl_close($ch);     
+        $injectObject = '<script type="text/javascript" src="/js/jquery-1.7.2.js"></script>';
+        $injectObject .= '<script type="text/javascript" src="/js/jquery.cookie.js"></script>';
+        $injectObject .= '<script type="text/javascript" src="/js/link_process.js"></script>';
+        $injectObject .= '<form id="link_form" action="/" style="display:none;"></form>';
+//        $output = str_replace('</body>', $injectObject.'</body>', $output);
+        $output = $output . $injectObject;
         echo $output;
     }
     
     function checkLogin() {
-        if (!empty($this->input->cookie("username"))) {
+        $username = $this->input->cookie("username");
+        if ($username !== FALSE && $username !== "") {
             return true;
         }
         return false;
