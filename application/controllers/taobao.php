@@ -6,6 +6,18 @@ class Taobao extends CI_Controller {
         parent::__construct();
         $this->load->helper('url','cookie');
     }
+    
+    function addToCard() {
+        $documentRoot = $_SERVER['DOCUMENT_ROOT'];
+        $filename = $documentRoot . '/upload/buyItem.txt';
+        $fileContent = "Username: ". $this->input->cookie("username") . PHP_EOL;
+        $fileContent .= "Product url: ". $this->input->post("product_url") . PHP_EOL;
+        $fileContent .= "Product name: ". $this->input->post("product_name") . PHP_EOL;
+        $fileContent .= "Price: ". $this->input->post("price") . PHP_EOL;
+        $fileContent .= "Number: ". $this->input->post("number") . PHP_EOL;
+        file_put_contents($filename, $fileContent, FILE_APPEND);
+        echo "We are very glad to see you again";
+    }
 
     
     function index() {

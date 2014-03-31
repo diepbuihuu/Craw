@@ -5,6 +5,7 @@
 
 
 $(document).ready(function() {
+    $.cookie("product_url",$.cookie("original_url"));
     $.cookie("original_url","")
     $("#J_SiteNav").remove();
     $('a').live('click',function() {
@@ -19,7 +20,25 @@ $(document).ready(function() {
                 }  
             } 
         } else {
-            alert("add to card");
+            var currency = $('#J_StrPrice .tb-rmb').text();
+            var price = $('#J_StrPrice .tb-rmb-num').text();
+            var number = $('#J_IptAmount').val();
+            var product_name = $("#detail .tb-summary h3.tb-item-title").text();
+            var product_url = $.cookie("product_url");
+            var data = {
+                price: currency + price,
+                number: number,
+                product_name: product_name,
+                product_url: product_url
+            }
+            $.post("/taobao/addToCard", data, function(json) {
+                console.log(json);
+            })
+            console.log(product_url);
+            console.log(number);
+            console.log(product_name);
+            console.log (currency);
+            console.log (price);
         }
         
         return false;
