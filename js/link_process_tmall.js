@@ -5,7 +5,6 @@
 
 
 $(document).ready(function() {
-    $.cookie("product_url",$.cookie("original_url"));
     $.cookie("original_url","")
     $("#site-nav").remove();
     $('a').live('click',function() {

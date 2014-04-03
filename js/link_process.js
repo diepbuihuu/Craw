@@ -5,7 +5,6 @@
 
 
 $(document).ready(function() {
-    $.cookie("product_url",$.cookie("original_url"));
     $.cookie("original_url","")
     $("#J_SiteNav").remove();
     $('a').live('click',function() {
@@ -27,9 +26,9 @@ $(document).ready(function() {
                 product_name: product_name,
                 product_url: product_url
             }
-            $.post("/taobao/addToCard", data, function(json) {
-                console.log(json);
-            })
+//            $.post("/taobao/addToCard", data, function(json) {
+//                console.log(json);
+//            })
             console.log(product_url);
             console.log(number);
             console.log(product_name);
