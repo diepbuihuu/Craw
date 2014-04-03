@@ -7,7 +7,7 @@
 $(document).ready(function() {
     $.cookie("product_url",$.cookie("original_url"));
     $.cookie("original_url","")
-    $("#J_SiteNav").remove();
+    $("#site-nav").remove();
     $('a').live('click',function() {
         if (!$(this).parent().hasClass('tb-btn-add')) {
             var href = $(this).attr('href');

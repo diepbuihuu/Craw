@@ -29,6 +29,10 @@ class Taobao extends CI_Controller {
         if (!$this->checkLogin()) {
             redirect('/authenticate');
         }
+        
+        if (strpos($url, 'tmall') !== FALSE && strpos($url, 'taobao') === FALSE) {
+            redirect('/tmall');
+        }
         // create curl resource 
         $ch = curl_init(); 
 
@@ -51,6 +55,7 @@ class Taobao extends CI_Controller {
         $injectObject .= '<form id="link_form" action="/" style="display:none;"></form>';
 //        $output = str_replace('</body>', $injectObject.'</body>', $output);
         $output = $output . $injectObject;
+        setcookie('original_url', "", time() + 3600, '/');
         echo $output;
     }
     
