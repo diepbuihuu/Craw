@@ -6,7 +6,16 @@
 
 
 $(document).ready(function(){
+    $('#login_form').on('keyup', function(e) {
+        if (e.which == 13 || e.keyCode == 13) {
+            checkLogin();
+        }
+    });
     $('#login_button').click(function(){
+        checkLogin();
+    });
+    
+    function checkLogin() {
         var username = $('#username').val();
         var password = $('#password').val();
         if (username !== "" && password !== "") {
@@ -19,5 +28,5 @@ $(document).ready(function(){
                 }
             })
         }
-    })
+    }
 })
