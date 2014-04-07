@@ -4,8 +4,8 @@
     <title>Order List</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="css/order.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="/css/order.css" rel="stylesheet">
   </head>
   <body>
     <table class="table table-striped">
@@ -91,7 +91,7 @@
     
     <script type="text/javascript" src="/js/jquery.js"></script>
     <script type="text/javascript" src="/js/jquery.cookie.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
   </body>
 </html>
     

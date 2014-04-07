@@ -18,7 +18,7 @@ $(document).ready(function(){
     function checkLogin() {
         var username = $('#username').val();
         var password = $('#password').val();
-            $.post("/authenticate/checkUser",
+            $.post("/index.php/authenticate/checkUser",
             {username: username, password: password}
             , function(json) {
                 var response = JSON.parse(json);
