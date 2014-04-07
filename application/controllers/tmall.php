@@ -2,7 +2,7 @@
 
 require_once 'nhabuon.php';
 
-class Tmall extends CI_Controller {
+class Tmall extends Nhabuon {
     
     public function __construct() {  
         parent::__construct();
