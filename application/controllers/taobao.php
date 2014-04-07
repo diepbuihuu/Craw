@@ -1,28 +1,16 @@
 <?php
 
-class Taobao extends CI_Controller {
+require_once 'nhabuon.php';
+
+class Taobao extends Nhabuon {
     
     public function __construct() {  
         parent::__construct();
         $this->load->helper('url','cookie');
     }
     
-    function addToCard() {
-        $documentRoot = $_SERVER['DOCUMENT_ROOT'];
-        $filename = $documentRoot . '/upload/buyItem.txt';
-        $fileContent = "Username: ". $this->input->cookie("username") . PHP_EOL;
-        $fileContent .= "Product url: ". $this->input->post("product_url") . PHP_EOL;
-        $fileContent .= "Product name: ". $this->input->post("product_name") . PHP_EOL;
-        $fileContent .= "Price: ". $this->input->post("price") . PHP_EOL;
-        $fileContent .= "Number: ". $this->input->post("number") . PHP_EOL;
-        $fileContent .= "Color: ". $this->input->post("color") . PHP_EOL;
-        $fileContent .= "Size: ". $this->input->post("size") . PHP_EOL;
-        $fileContent .= "--------------------------------------" . PHP_EOL;
-        file_put_contents($filename, $fileContent, FILE_APPEND);
-        echo "We are very glad to see you again";
-    }
 
-    
+   
     function index() {
         $url = $this->input->cookie("original_url");
         if ($url === FALSE || $url === "") {
@@ -66,24 +54,6 @@ class Taobao extends CI_Controller {
         
     }
     
-    function checkLogin() {
-        $username = $this->input->cookie("username");
-        if ($username !== FALSE && $username !== "") {
-            return true;
-        }
-        return false;
-    }
-    
-    function checkUser() {
-        $username = $this->input->post("username");
-        $password = $this->input->post("password");
-        setcookie("username", $username);
-        $response = array (
-            "status" => 1,
-            "message" => "Complete successfully"
-        );
-        echo json_encode($response);
-    }
 
 }
 

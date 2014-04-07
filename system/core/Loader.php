@@ -228,7 +228,7 @@ class CI_Loader {
 	 * @param	bool	database connection
 	 * @return	void
 	 */
-	public function model($model, $name = '', $db_conn = FALSE)
+	public function model($model, $name = '', $db_conn = TRUE)
 	{
 		if (is_array($model))
 		{

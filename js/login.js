@@ -18,15 +18,15 @@ $(document).ready(function(){
     function checkLogin() {
         var username = $('#username').val();
         var password = $('#password').val();
-        if (username !== "" && password !== "") {
             $.post("/authenticate/checkUser",
             {username: username, password: password}
             , function(json) {
                 var response = JSON.parse(json);
                 if (response.status === 1) {
                     window.location.href = "/taobao"
+                } else {
+                    alert(response.message);
                 }
             })
-        }
     }
 })

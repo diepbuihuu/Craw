@@ -41,8 +41,9 @@ $(document).ready(function() {
                 + 'color:' + color + '\n'
                 + 'size :' + size;
             if (confirm(message)) {
-                $.post("/taobao/addToCard", data, function(json) {
-                    alert(json);
+                $.post("/order/addToCard", data, function(json) {
+                    message = json + '\n' + "Do you want to check your Cart now?"
+                    alert(message);
                 })
             }
         }

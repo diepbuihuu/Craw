@@ -1,0 +1,14 @@
+/* 
+    Document   : order
+    Created on : Apr 7, 2014, 4:29:09 PM
+    Author     : diepbh
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.pro_link_header, .pro_name_header{
+    width: 200px;
+}
+thead {
+    background-color: #C7DEFE;
+}

@@ -25,6 +25,12 @@
  * @link		http://codeigniter.com/user_guide/libraries/config.html
  */
 class CI_Model {
+        /**
+         *  CI_DB_active_record
+         * class CI_DB_active_record
+         * @var CI_DB_active_record 
+         */
+        public $db;
 
 	/**
 	 * Constructor
@@ -33,6 +39,7 @@ class CI_Model {
 	 */
 	function __construct()
 	{
+            unset($this->db);
 		log_message('debug', "Model Class Initialized");
 	}
 
