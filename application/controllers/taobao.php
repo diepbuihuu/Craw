@@ -44,11 +44,12 @@ class Taobao extends Nhabuon {
             $injectObject .= '<script type="text/javascript" src="/js/jquery.cookie.js"></script>';
             $injectObject .= '<script type="text/javascript" src="/js/link_process.js"></script>';
             $injectObject .= '<form id="link_form" action="/" style="display:none;"></form>';
+            $injectObject .= '<link href="/css/add_taobao.css" rel="stylesheet">';
     //        $output = str_replace('</body>', $injectObject.'</body>', $output);
             $output = str_replace('index-min.js', 'aaa.js', $output);
             $output = $output . $injectObject;
-            setcookie('product_url', $url, time() + 3600, '/');
-            setcookie('original_url', "", time() + 3600, '/');
+            setcookie('product_url', $url, time() + 3600, '/index.php');
+            setcookie('original_url', "", time() + 3600, '/index.php');
             echo $output;
         }
         

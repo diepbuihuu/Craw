@@ -45,8 +45,8 @@ class Tmall extends CI_Controller {
         $injectObject .= '<form id="link_form" action="/" style="display:none;"></form>';
 //        $output = str_replace('</body>', $injectObject.'</body>', $output);
         $output = $output . $injectObject;
-        setcookie('product_url', $url, time() + 3600, '/');
-        setcookie('original_url', "", time() + 3600, '/');
+        setcookie('product_url', $url, time() + 3600, '/index.php');
+        setcookie('original_url', "", time() + 3600, '/index.php');
         echo $output;
     }
     
