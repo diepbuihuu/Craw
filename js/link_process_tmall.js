@@ -5,12 +5,12 @@
 
 
 $(document).ready(function() {
-    $.cookie("original_url","")
+    $.cookie("original_url","", {path: '/index.php'})
     $("#site-nav").remove();
     $('a').live('click',function() {
         if ($(this).attr('id') === 'J_LinkBasket') {
             // order process
-            if ($('.tb-selected').length < 2) {
+            if ($('.J_TSaleProp .tb-selected').length < 2) {
                 alert("Please choose color and size");
                 return false;
             }
@@ -18,8 +18,8 @@ $(document).ready(function() {
             var number = $('#J_Amount input').val()
             var product_name = $('.tb-gallery .tm-brand').text()
             var product_url = $.cookie("product_url");
-            var color = $.trim($('.tb-selected:first a').text());
-            var size = $.trim($('.tb-selected:nth-child(2) a').text());
+            var color = $.trim($('.J_TSaleProp .tb-selected:first a').text());
+            var size = $.trim($('.J_TSaleProp .tb-selected:nth-child(2) a').text());
             var data = {
                 price: price,
                 number: number,

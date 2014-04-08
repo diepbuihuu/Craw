@@ -5,7 +5,7 @@
 
 
 $(document).ready(function() {
-    $.cookie("original_url","")
+    $.cookie("original_url","", {path: '/index.php'})
     $("#J_SiteNav").remove();
     $('a').live('click',function() {
         if (!$(this).parent().hasClass('tb-btn-add') && !$(this).hasClass('J_LinkAdd')) {
@@ -16,7 +16,7 @@ $(document).ready(function() {
             } 
         } else {
             // order process
-            if ($('.tb-selected').length < 2) {
+            if ($('.J_TSaleProp .tb-selected').length < 2) {
                 alert("Please choose color and size");
                 return false;
             }
@@ -25,8 +25,8 @@ $(document).ready(function() {
             var number = $('#J_IptAmount').val();
             var product_name = $("#detail .tb-summary h3.tb-item-title").text();
             var product_url = $.cookie("product_url");
-            var color = $.trim($('.tb-selected:first a').text());
-            var size = $.trim($('.tb-selected:last a').text());
+            var color = $.trim($('.J_TSaleProp .tb-selected:first a').text());
+            var size = $.trim($('.J_TSaleProp .tb-selected:last a').text());
             var data = {
                 price: currency + price,
                 number: number,
