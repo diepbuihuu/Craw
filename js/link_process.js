@@ -11,10 +11,16 @@ $(document).ready(function() {
         if (!$(this).parent().hasClass('tb-btn-add') && !$(this).hasClass('J_LinkAdd')) {
             var href = $(this).attr('href'); 
             if (href !== "#") {
-                if ($(this).attr('href') !== window.location.href) {
-                    $.cookie("original_url", $(this).attr('href'), {path: '/index.php'});                    
-                    $(this).attr('alt', $(this).attr('href'));
-                    $(this).attr('href', window.location.href);
+                if (typeof $(this).data('injected') === 'undefined') {
+                    $(this).data('injected', true);
+//                    $.cookie("original_url", $(this).attr('href'), {path: '/index.php'});                    
+//                    $(this).attr('alt', $(this).attr('href'));
+                    var baseURL = '/index.php/taobao';
+                    var target = $(this).attr('href');
+                    if (target.indexOf('tmall') !== -1) {
+                        baseURL = '/index.php/tmall';
+                    }
+                    $(this).attr('href', baseURL + '?url=' + encodeURIComponent(target));
                 } else {
                     $.cookie("original_url", $(this).attr('alt'), {path: '/index.php'});      
                 }

@@ -12,16 +12,14 @@ class Taobao extends Nhabuon {
 
    
     function index() {
-        echo $_SERVER['REQUEST_URI']; die;
         $url = $this->input->get('url');
-        var_dump($url);die;
         
         if ($url === FALSE || $url === "") {
             $url = "http://sea.taobao.com";
         } else {
-            $url = urldecode($url);
+            $url = trim(urldecode($url));
         }
-        
+
         if (!$this->checkLogin()) {
             redirect('/authenticate');
         }
@@ -34,11 +32,16 @@ class Taobao extends Nhabuon {
 
             // set url 
             curl_setopt($ch, CURLOPT_URL, $url); 
+//            curl_setopt($ch, CURLOPT_URL, 'http://item.taobao.com/item.htm?spm=a230r.1.14.37.l99Uy8&id=14748198940'); 
     //        curl_setopt($ch, CURLOPT_URL, "http://www.1order.vn/frontpage/parserTB.action?method=cktb?d=1396250005116"); 
 
-
+            curl_setopt($ch, CURLOPT_HEADER, true);
             //return the transfer as a string 
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+            
+            $user_agent = "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.7.5)".
+                " Gecko/20041107 Firefox/1.0";
+            curl_setopt($ch, CURLOPT_USERAGENT, $user_agent );
 
             // $output contains the output string 
             $output = curl_exec($ch); 
