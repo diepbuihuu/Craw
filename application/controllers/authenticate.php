@@ -44,6 +44,11 @@ class Authenticate extends CI_Controller {
         echo json_encode($response);
     }
     
+    function logout() {
+        $this->session->sess_destroy();
+        redirect('/authenticate');
+    }
+    
 
 }
 

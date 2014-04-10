@@ -12,3 +12,7 @@
 thead {
     background-color: #C7DEFE;
 }
+.wid200 {
+    width: 200px;
+    overflow-x: scroll;
+}
