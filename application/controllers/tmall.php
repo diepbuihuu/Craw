@@ -11,9 +11,11 @@ class Tmall extends Nhabuon {
      
       
     function index() {
-        $url = $this->input->cookie("original_url");
+        $url = $this->input->get('url');
         if ($url === FALSE || $url === "") {
             $url = "http://www.tmall.com/";
+        } else {
+            $url = trim(urldecode($url));
         }
         
         if (startsWith($url, '//')) {

@@ -41,15 +41,23 @@ $(document).ready(function() {
                     }
                 })
             }
+            return false;
             
         } else {
             var href = $(this).attr('href'); 
             if (href !== "#") {
-                $.cookie("original_url", $(this).attr('href'), {path: '/index.php'});
-                window.location.reload();
+                if (typeof $(this).data('injected') === 'undefined') {
+                    $(this).data('injected', true);
+                    var baseURL = '/index.php/tmall';
+                    var target = $(this).attr('href');
+                    if (target.indexOf('taobao') !== -1) {
+                        baseURL = '/index.php/taobao';
+                    }
+                    $(this).attr('href', baseURL + '?url=' + encodeURIComponent(target));
+                } 
             } 
         }
         
-        return false;
+        
     })
 })

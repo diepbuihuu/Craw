@@ -35,13 +35,10 @@ class Taobao extends Nhabuon {
 //            curl_setopt($ch, CURLOPT_URL, 'http://item.taobao.com/item.htm?spm=a230r.1.14.37.l99Uy8&id=14748198940'); 
     //        curl_setopt($ch, CURLOPT_URL, "http://www.1order.vn/frontpage/parserTB.action?method=cktb?d=1396250005116"); 
 
-            curl_setopt($ch, CURLOPT_HEADER, true);
+
             //return the transfer as a string 
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
             
-            $user_agent = "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.7.5)".
-                " Gecko/20041107 Firefox/1.0";
-            curl_setopt($ch, CURLOPT_USERAGENT, $user_agent );
 
             // $output contains the output string 
             $output = curl_exec($ch); 
