@@ -46,7 +46,9 @@
                     <?php echo $order->username?>
                 </td>
                 <td class="pro_link_cell">
-                    <?php echo trim($order->product_link); ?>
+                    <div class="wid200">
+                        <?php echo trim($order->product_link); ?>
+                    </div>             
                 </td>
                 <td class="pro_name_cell">
                     <?php echo trim($order->product_name); ?>
@@ -90,7 +92,7 @@
         </tbody>
     </table>
     
-    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/jquery-1.7.2.js"></script>
     <script type="text/javascript" src="/js/jquery.cookie.js"></script>
     <script src="/js/bootstrap.min.js"></script>
   </body>
