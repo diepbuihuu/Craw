@@ -11,8 +11,14 @@ $(document).ready(function() {
         if (!$(this).parent().hasClass('tb-btn-add') && !$(this).hasClass('J_LinkAdd')) {
             var href = $(this).attr('href'); 
             if (href !== "#") {
-                $.cookie("original_url", $(this).attr('href'), {path: '/index.php'});
-                window.location.reload();
+                if ($(this).attr('href') !== window.location.href) {
+                    $.cookie("original_url", $(this).attr('href'), {path: '/index.php'});                    
+                    $(this).attr('alt', $(this).attr('href'));
+                    $(this).attr('href', window.location.href);
+                } else {
+                    $.cookie("original_url", $(this).attr('alt'), {path: '/index.php'});      
+                }
+                
             } 
         } else {
             // order process
@@ -48,8 +54,8 @@ $(document).ready(function() {
                     }
                 })
             }
+            return false;
         }
         
-        return false;
     })
 })
