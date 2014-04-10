@@ -12,6 +12,7 @@ class Nhabuon extends CI_Controller {
         if ($this->session->userdata('login')) {
             return true;
         } else {
+            $this->session->set_userdata('redirect_url', $_SERVER['REQUEST_URI']);
             return false;
         }
     }

@@ -1,0 +1,15 @@
+/* 
+    Document   : dashboard
+    Created on : Apr 10, 2014, 2:17:12 PM
+    Author     : diepbh
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.site_intro {
+    height: 20px;
+    background-color: transparent;
+}
+.menu-item {
+    width: 100px;
+}

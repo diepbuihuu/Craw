@@ -12,9 +12,14 @@ class Taobao extends Nhabuon {
 
    
     function index() {
-        $url = $this->input->cookie("original_url");
+        echo $_SERVER['REQUEST_URI']; die;
+        $url = $this->input->get('url');
+        var_dump($url);die;
+        
         if ($url === FALSE || $url === "") {
             $url = "http://sea.taobao.com";
+        } else {
+            $url = urldecode($url);
         }
         
         if (!$this->checkLogin()) {
