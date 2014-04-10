@@ -43,7 +43,7 @@
                   <a href="#">Change Password</a>
               </li>
               <li>
-                  <a href="#">Logout</a>
+                  <a href="/index.php/authenticate/logout">Logout</a>
               </li>
           </ul>
       </div>

@@ -15,8 +15,10 @@ class UserDashboard extends Nhabuon {
         }
         $redirect_url = $this->session->userdata('redirect_url');
         if (!empty($redirect_url)) {
+            $this->session->unset_userdata(array('redirect_url' => ''));
             redirect($redirect_url);
         }
+        
         $user_id = $this->session->userdata('user_id');
         $this->load->view('dashboard/user');
     }

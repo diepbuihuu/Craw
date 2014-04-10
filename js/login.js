@@ -23,7 +23,7 @@ $(document).ready(function(){
             , function(json) {
                 var response = JSON.parse(json);
                 if (response.status === 1) {
-                    window.location.href = "/taobao"
+                    window.location.href = "/index.php/userDashboard";
                 } else {
                     alert(response.message);
                 }
