@@ -6,7 +6,7 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 // Execute
 curl_exec($ch);
 
-// Check if any error occurred
+// Check if any error occurred'顏色分類
 if(!curl_errno($ch))
 {
  $info = curl_getinfo($ch);

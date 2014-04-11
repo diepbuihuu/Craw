@@ -10,11 +10,17 @@ $(document).ready(function() {
     $('a').live('click',function() {
         if ($(this).attr('id') === 'J_LinkBasket') {
             // order process
-            if ($('.J_TSaleProp .tb-selected').length < 2) {
+            var numAttr = $('.J_TSaleProp').length > 2 ? 2 : $('.J_TSaleProp').length;
+            if ($('.J_TSaleProp .tb-selected').length < numAttr) {
                 alert("Please choose color and size");
                 return false;
             }
-            var price = $.trim($('#J_StrPriceModBox').text());
+            var promoPrice = $('#J_PromoPrice .tm-promo-price .tm-price').text();
+            if (promoPrice !== '' && promoPrice !== undefined) {
+                var price = promoPrice;
+            } else {
+                var price = $.trim($('#J_StrPriceModBox').text());
+            }  
             var number = $('#J_Amount input').val()
             var product_name = $('.tb-gallery .tm-brand').text()
             var product_url = $('#product_url').val();

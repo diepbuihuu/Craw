@@ -25,7 +25,8 @@ $(document).ready(function() {
             } 
         } else {
             // order process
-            if ($('.J_TSaleProp .tb-selected').length < 2) {
+            var numAttr = $('.J_TSaleProp').length > 2 ? 2 : $('.J_TSaleProp').length;
+            if ($('.J_TSaleProp .tb-selected').length < numAttr) {
                 alert("Please choose color and size");
                 return false;
             }
@@ -36,6 +37,16 @@ $(document).ready(function() {
             var product_url = $('#product_url').val();
             var color = $.trim($('.J_TSaleProp .tb-selected:first a').text());
             var size = $.trim($('.J_TSaleProp .tb-selected:last a').text());
+            
+            // if color ans size in revert order
+            var sizeCheck = $.trim($('.J_TMySizeProp .J_TSaleProp .tb-selected a').text());
+            if ((sizeCheck !== '' && sizeCheck === color) || $('.J_TSaleProp:first').data('property') === '尺码') {
+                var tmp = color;
+                color = size;
+                size = tmp;
+                
+            }
+            
             var data = {
                 price: currency + price,
                 number: number,
