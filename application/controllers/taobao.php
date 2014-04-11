@@ -48,7 +48,7 @@ class Taobao extends Nhabuon {
             $injectObject = '<script type="text/javascript" src="/js/jquery-1.7.2.js"></script>';
             $injectObject .= '<script type="text/javascript" src="/js/jquery.cookie.js"></script>';
             $injectObject .= '<script type="text/javascript" src="/js/link_process.js"></script>';
-            $injectObject .= '<form id="link_form" action="/" style="display:none;"></form>';
+            $injectObject .= '<input type="hidden" id="product_url" value="' . $url . '">';
             $injectObject .= '<link href="/css/add_taobao.css" rel="stylesheet">';
     //        $output = str_replace('</body>', $injectObject.'</body>', $output);
             $output = str_replace('index-min.js', 'aaa.js', $output);

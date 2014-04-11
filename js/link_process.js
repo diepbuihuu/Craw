@@ -31,7 +31,7 @@ $(document).ready(function() {
             var price = $('#J_StrPrice .tb-rmb-num').text();
             var number = $('#J_IptAmount').val();
             var product_name = $("#detail .tb-summary h3.tb-item-title").text();
-            var product_url = $.cookie("product_url");
+            var product_url = $('#product_url').val();
             var color = $.trim($('.J_TSaleProp .tb-selected:first a').text());
             var size = $.trim($('.J_TSaleProp .tb-selected:last a').text());
             var data = {
