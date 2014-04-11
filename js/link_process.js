@@ -7,6 +7,8 @@
 $(document).ready(function() {
     $.cookie("original_url","", {path: '/index.php'})
     $("#J_SiteNav").remove();
+    $("#site-nav").remove();
+    $(".tb-wrapper-sub .ad.ad-p4p-baobei").remove();
     $('a').live('click',function() {
         if (!$(this).parent().hasClass('tb-btn-add') && !$(this).hasClass('J_LinkAdd')) {
             var href = $(this).attr('href'); 
