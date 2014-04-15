@@ -9,10 +9,21 @@ $(document).ready(function() {
     $("#J_SiteNav").remove();
     $("#site-nav").remove();
     $(".tb-wrapper-sub .ad.ad-p4p-baobei").remove();
+    $('button.btn-search').click(function(){
+        var userInput = $('#q').val();
+        var re = /\s+/;
+        var keywords = userInput.split(re);
+        var searchWord = keywords.join('+');
+        var taobaoURL = 'http://s.taobao.com/search?q=' + searchWord;
+        var myURL = '/index.php/taobao?url=' + encodeURIComponent(taobaoURL);
+//        console.log(myURL); return false;
+        window.location.href = myURL;
+        return false;
+    });
     $('a').live('click',function() {
         if (!$(this).parent().hasClass('tb-btn-add') && !$(this).hasClass('J_LinkAdd')) {
             var href = $(this).attr('href'); 
-            if (href !== "#") {
+            if (href !== "#" && href !== 'javascript:;') {
                 if (typeof $(this).data('injected') === 'undefined') {
                     $(this).data('injected', true);
                     var baseURL = '/index.php/taobao';

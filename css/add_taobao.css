@@ -11,3 +11,6 @@ and open the template in the editor.
 #J_LoginContainer {
     display: none !important;
 }
+.search-popupmenu.search-menu {
+    display: none;
+}
