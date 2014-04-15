@@ -7,6 +7,24 @@
 $(document).ready(function() {
     $.cookie("original_url","", {path: '/index.php'})
     $("#site-nav").remove();
+    
+    var searchTmall = function() {
+        var userInput = $('#mq').val();
+        var re = /\s+/;
+        var keywords = userInput.split(re);
+        var searchWord = keywords.join('+');
+        var tmallURL = 'http://list.tmall.com/search_product.htm?q=' + searchWord;
+        console.log(tmallURL); return false;
+        var myURL = '/index.php/tmall?url=' + encodeURIComponent(tmallURL);
+        console.log(myURL); return false;
+        window.location.href = myURL;
+        return false;
+    }
+//    $('#J_SearchBtn').click(function(){
+////        searchTmall();
+//        console.log('123');
+//        return false;
+//    });
     $('a').live('click',function() {
         if ($(this).attr('id') === 'J_LinkBasket') {
             // order process

@@ -47,6 +47,7 @@ class Tmall extends Nhabuon {
         $injectObject .= '<script type="text/javascript" src="/js/jquery.cookie.js"></script>';
         $injectObject .= '<script type="text/javascript" src="/js/link_process_tmall.js"></script>';
         $injectObject .= '<input type="hidden" id="product_url" value="' . $url . '">';
+        $injectObject .= '<link href="/css/add_tmall.css" rel="stylesheet">';
 //        $output = str_replace('</body>', $injectObject.'</body>', $output);
         $output = $output . $injectObject;
         setcookie('product_url', $url, time() + 3600, '/index.php');
