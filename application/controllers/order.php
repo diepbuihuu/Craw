@@ -28,8 +28,8 @@ class Order extends Nhabuon {
             'product_name' => $this->input->post("product_name"),
             'price' => $this->input->post("price"),
             'number' => $this->input->post("number"),
-            'color' => $this->input->post("color"),
-            'size' => $this->input->post("size"),
+            'shop_name' => $this->input->post("shop_name"),
+            'user_data' => $this->input->post("user_data"),
             'status' => '1',
             'created' => time(),
             'modified' => time()

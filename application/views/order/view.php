@@ -12,7 +12,7 @@
     <table class="table table-striped">
         <thead>
             <th class="username_header">
-                Username
+                Shop
             </th>
             <th class="pro_link_header">
                 Product Link
@@ -26,12 +26,6 @@
             <th class="number_header">
                 Number
             </th>
-            <th class="color_header">
-                Color
-            </th>
-            <th class="size_header">
-                Size
-            </th>
             <th class="status_header">
                 Status
             </th>
@@ -40,54 +34,52 @@
             </th>
         </thead>
         <tbody>
-        <?php foreach ($orders as $order):?>
-            <tr>
-                <td>
-                    <?php echo $order->username?>
-                </td>
-                <td class="pro_link_cell">
-                    <div class="wid200">
-                        <?php echo trim($order->product_link); ?>
-                    </div>             
-                </td>
-                <td class="pro_name_cell">
-                    <?php echo trim($order->product_name); ?>
-                </td>
-                <td>
-                    <?php echo $order->price?>
-                </td>
-                <td>
-                    <?php echo $order->number?>
-                </td>
-                <td>
-                    <?php echo $order->color?>
-                </td>
-                <td>
-                    <?php echo $order->size?>
-                </td>
-                <td>
-                    <?php 
-                        switch($order->status) {
-                            case '1' :
-                                echo "Not Ready";
-                                break;
-                            case '2' :
-                                echo "Ready";
-                                break;
-                            case '3' :
-                                echo "Deliverying";
-                                break;
-                            case '4' :
-                                echo "Complete";
-                                break;
-                        }
-                    
-                    ?>
-                </td>
-                <td>
-                    <?php echo date("Y-m-d H:i:s",$order->created); ?>
-                </td>
-            </tr>
+        <?php foreach ($orders as $shopName => $shopOrders):?>
+            <?php foreach($shopOrders as $index => $order): ?>
+                <tr>
+                    <?php if($index === 0): ?>
+                    <td rowspan="<?php echo count($shopOrders); ?>">
+                        <?php echo $order->shop_name?>
+                    </td>
+                    <?php endif; ?>
+                    <td class="pro_link_cell">
+                        <div class="wid200">
+                            <?php echo trim($order->product_link); ?>
+                        </div>             
+                    </td>
+                    <td class="pro_name_cell">
+                        <?php echo trim($order->product_name); ?>
+                    </td>
+                    <td>
+                        <?php echo $order->price?>
+                    </td>
+                    <td>
+                        <?php echo $order->number?>
+                    </td>
+                    <td>
+                        <?php 
+                            switch($order->status) {
+                                case '1' :
+                                    echo "Not Ready";
+                                    break;
+                                case '2' :
+                                    echo "Ready";
+                                    break;
+                                case '3' :
+                                    echo "Deliverying";
+                                    break;
+                                case '4' :
+                                    echo "Complete";
+                                    break;
+                            }
+
+                        ?>
+                    </td>
+                    <td>
+                        <?php echo date("Y-m-d H:i:s",$order->created); ?>
+                    </td>
+                </tr>
+            <?php endforeach;?>
         <?php endforeach;?>
         </tbody>
     </table>

@@ -68,8 +68,7 @@ $(document).ready(function() {
             
             var message = "Your are ordering " + number + 'product(s)s "' + product_name + '"\n'
                 + 'price: ' + price + '/product\n'
-                + 'color:' + color + '\n'
-                + 'size :' + size;
+                + 'category:' + user_data + '\n'
             if (confirm(message)) {
                 $.post("/index.php/order/addToCard", data, function(json) {
                     message = json + '\n' + "Do you want to check your Cart now?"
