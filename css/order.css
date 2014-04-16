@@ -6,7 +6,7 @@
         Purpose of the stylesheet follows.
 */
 
-.pro_link_header, .pro_name_header{
+.pro_link_header, .pro_name_header, .user_data_header{
     width: 200px;
 }
 thead {

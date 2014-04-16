@@ -20,6 +20,9 @@
             <th class="pro_name_header">
                 Product Name
             </th>
+            <th class="user_data_header">
+                Category
+            </th>
             <th class="price_header">
                 Price
             </th>
@@ -49,6 +52,9 @@
                     </td>
                     <td class="pro_name_cell">
                         <?php echo trim($order->product_name); ?>
+                    </td>
+                    <td class="user_data_cell">
+                        <?php echo trim($order->user_data); ?>
                     </td>
                     <td>
                         <?php echo $order->price?>

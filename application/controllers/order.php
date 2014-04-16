@@ -29,7 +29,7 @@ class Order extends Nhabuon {
             'price' => $this->input->post("price"),
             'number' => $this->input->post("number"),
             'shop_name' => $this->input->post("shop_name"),
-            'user_data' => $this->input->post("user_data"),
+            'user_data' => rtrim($this->input->post("user_data"),', '),
             'status' => '1',
             'created' => time(),
             'modified' => time()
