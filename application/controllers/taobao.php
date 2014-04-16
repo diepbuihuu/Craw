@@ -25,7 +25,7 @@ class Taobao extends Nhabuon {
             }
         }
         if (substr($url, 0, 7) === '/search') {
-            $url = 'http://search8.taobao.com/' . $url;
+            $url = 'http://search8.taobao.com' . $url;
         }
         $url = str_replace(' ', '+', $url);
         return $url;

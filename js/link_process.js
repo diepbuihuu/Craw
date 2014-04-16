@@ -36,7 +36,7 @@ $(document).ready(function() {
             } 
         } else {
             // order process
-            var numAttr = $('.J_TSaleProp').length > 2 ? 2 : $('.J_TSaleProp').length;
+            var numAttr = $('.J_TSaleProp').length;
             if ($('.J_TSaleProp .tb-selected').length < numAttr) {
                 alert("Please choose color and size");
                 return false;
@@ -46,26 +46,30 @@ $(document).ready(function() {
             var number = $('#J_IptAmount').val();
             var product_name = $("#detail .tb-summary h3.tb-item-title").text();
             var product_url = $('#product_url').val();
+            var user_data = '';
+            $('.J_TSaleProp').each(function(){
+                user_data += $(this).data('property') + ':' + $.trim($(this).find('.tb-selected a').text()) + ', ';
+            })
             var shop_name = $('.J_TShopSummary .shop-name a').attr('href');
-            var color = $.trim($('.J_TSaleProp .tb-selected:first a').text());
-            var size = $.trim($('.J_TSaleProp .tb-selected:last a').text());
-            
-            // if color ans size in revert order
-            var sizeCheck = $.trim($('.J_TMySizeProp .J_TSaleProp .tb-selected a').text());
-            if ((sizeCheck !== '' && sizeCheck === color) || $('.J_TSaleProp:first').data('property') === '尺码') {
-                var tmp = color;
-                color = size;
-                size = tmp;
-                
-            }
+//            var color = $.trim($('.J_TSaleProp .tb-selected:first a').text());
+//            var size = $.trim($('.J_TSaleProp .tb-selected:last a').text());
+//            
+//            // if color ans size in revert order
+//            var sizeCheck = $.trim($('.J_TMySizeProp .J_TSaleProp .tb-selected a').text());
+//            if ((sizeCheck !== '' && sizeCheck === color) || $('.J_TSaleProp:first').data('property') === '尺码') {
+//                var tmp = color;
+//                color = size;
+//                size = tmp;
+//                
+//            }
             
             var data = {
                 price: currency + price,
                 number: number,
                 product_name: product_name,
                 product_url: product_url,
-                color: color,
-                size: size
+                shop_name: shop_name,
+                user_data: user_data
             }
             
             var message = "Your are ordering " + number + 'product(s)s "' + product_name + '"\n'

@@ -9,6 +9,13 @@ class Tmall extends Nhabuon {
         parent::__construct();
     }
      
+    function removeRedirect($url) {
+        if (substr($url, 0, 7) === '/search') {
+            $url = 'http://list.tmall.com' . $url;
+        }
+        $url = str_replace(' ', '+', $url);
+        return $url;
+    }
       
     function index() {
         
@@ -17,6 +24,7 @@ class Tmall extends Nhabuon {
             $url = "http://www.tmall.com/";
         } else {
             $url = trim(urldecode($url));
+            $url = $this->removeRedirect($url);
         }
         
         if (startsWith($url, '//')) {
