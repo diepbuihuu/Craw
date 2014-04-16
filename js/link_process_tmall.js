@@ -49,6 +49,7 @@ $(document).ready(function() {
             var number = $('#J_Amount input').val()
             var product_name = $('.tb-gallery .tm-brand').text()
             var product_url = $('#product_url').val();
+            var shop_name = $('#shopExtra .slogo-shopname').attr('href');
             var color = $.trim($('.J_TSaleProp .tb-selected:first a').text());
             var size = $.trim($('.J_TSaleProp .tb-selected:nth-child(2) a').text());
             var data = {

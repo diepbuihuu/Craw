@@ -46,6 +46,7 @@ $(document).ready(function() {
             var number = $('#J_IptAmount').val();
             var product_name = $("#detail .tb-summary h3.tb-item-title").text();
             var product_url = $('#product_url').val();
+            var shop_name = $('.J_TShopSummary .shop-name a').attr('href');
             var color = $.trim($('.J_TSaleProp .tb-selected:first a').text());
             var size = $.trim($('.J_TSaleProp .tb-selected:last a').text());
             
