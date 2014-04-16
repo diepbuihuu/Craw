@@ -1,0 +1,15 @@
+/* 
+    Document   : add_tmall
+    Created on : Apr 15, 2014, 4:16:36 PM
+    Author     : diepbh
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+.s-popupmenu.s-menu {
+    display: none;
+}

@@ -11,7 +11,8 @@ class Tmall extends Nhabuon {
      
       
     function index() {
-        $url = $this->input->get('url');
+        
+        $url = $this->input->get('url');    
         if ($url === FALSE || $url === "") {
             $url = "http://www.tmall.com/";
         } else {
@@ -30,6 +31,10 @@ class Tmall extends Nhabuon {
             redirect('/taobao');
         }
         
+        $this->sendRequestTmall($url);
+    }
+    
+    function sendRequestTmall($url) {
         // create curl resource 
         $ch = curl_init(); 
 
@@ -53,6 +58,14 @@ class Tmall extends Nhabuon {
         setcookie('product_url', $url, time() + 3600, '/index.php');
         setcookie('original_url', "", time() + 3600, '/index.php');
         echo $output;
+    }
+    
+    function search() {
+        
+        $requestURL = $_SERVER['REQUEST_URI'];
+        $url = str_replace('/index.php/tmall/search', 'http://list.tmall.com/search_product.htm', $requestURL);
+        
+        $this->sendRequestTmall($url);
     }
     
 
