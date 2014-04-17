@@ -19,11 +19,21 @@ root {
 }
 
 .menu {
-    padding: 3px 15px;
+    padding: 0px 15px;
     font-size: 14px;
     color: white;
-    height: 30px;
+    height: 40px;
     background-color: #BF2E33;
+}
+.menu .span {
+    cursor: pointer;
+}
+.menu-item {
+    background: transparent;
+    color: white;
+    height: 25px;
+    padding-top: 10px;
+    border:none;
 }
 
 .pading5 {
