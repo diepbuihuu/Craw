@@ -28,7 +28,7 @@ class Order extends Nhabuon {
             'product_name' => $this->input->post("product_name"),
             'price' => $this->input->post("price"),
             'number' => $this->input->post("number"),
-            'shop_name' => empty($this->input->post("shop_name"))? 'Not Specified': $this->input->post("shop_name"),
+            'shop_name' => $this->input->post("shop_name"),
             'user_data' => rtrim($this->input->post("user_data"),', '),
             'status' => '1',
             'created' => time(),
