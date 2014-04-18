@@ -1,6 +1,8 @@
       
       <div class="pading10">
-          <div class="site_image"></div>
+          <div class="site_image">
+              <img src="/img/site_image.png">
+          </div>
           <div class="notification pading10">
               <b>Thông báo:</b> Sale off 50%
           </div>

@@ -11,7 +11,7 @@
   <body>
       <div class="row nhabuon-nav">
           <div class="span4 pading5">
-              Tỷ giá ngân hàng: 3462 VNĐ/1 RMB
+              Tỷ giá ngân hàng: 3462VNĐ / 1CNY
           </div>
           <div class="span2">
                <button class="btn btn-danger" type="button">Save Link</button>
@@ -28,7 +28,9 @@
           </div>
 
       </div>
-      <div class="slogan"></div>
+      <div class="slogan">
+          <img src="/img/slogan.png">
+      </div>
       
       <div class="row menu">
             <div class="span">

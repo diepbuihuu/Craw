@@ -53,15 +53,11 @@ root {
     float: left;
 }
 
-.slogan {
-    background-image:url('../img/slogan.png');
-    background-size: 100%;
-    height: 80px;
+.slogan img{
+    width: 100%;
 }
-.site_image {
-    background-image:url('../img/site_image.png');
-    background-size: 100%;
-    height: 400px;
+.site_image img{
+    width: 100%;
 }
 
 .notification {

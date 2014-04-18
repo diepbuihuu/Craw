@@ -1,4 +1,3 @@
-
     <link href="/css/order.css" rel="stylesheet">
     <table class="table table-striped">
         <thead>
@@ -32,7 +31,7 @@
             <?php foreach($shopOrders as $index => $order): ?>
                 <tr>
                     <?php if($index === 0): ?>
-                    <td rowspan="<?php echo count($shopOrders); ?>">
+                    <td rowspan="<?php echo count($shopOrders); ?>" class="shop_name_cell">
                         <?php echo $order->shop_name?>
                     </td>
                     <?php endif; ?>

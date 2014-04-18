@@ -19,3 +19,9 @@ thead {
 .username_header {
     width: 200px;
 }
+.table-striped tbody tr td.shop_name_cell {
+    background-color: #C7DEFE;
+    vertical-align: middle;
+    font-weight: bold;
+    border-top: 1px solid red;
+}
