@@ -17,10 +17,10 @@
                <button class="btn btn-danger" type="button">Save Link</button>
           </div>
           <div class="span2 rfloat pading5">
-              Giỏ hàng của tôi
+              <a href="/index.php/order">Giỏ hàng của tôi</a>
           </div>
           <div class="span2 rfloat pading5">
-              Đăng ký / Đăng nhập
+              <a href="">Đăng ký</a> / <a href="/index.php/authenticate">Đăng nhập</a>
           </div>
 
       </div>
