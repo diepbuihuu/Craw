@@ -1,14 +1,5 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Order List</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
+
     <link href="/css/order.css" rel="stylesheet">
-  </head>
-  <body>
     <table class="table table-striped">
         <thead>
             <th class="username_header">
@@ -90,9 +81,4 @@
         </tbody>
     </table>
     
-    <script type="text/javascript" src="/js/jquery-1.7.2.js"></script>
-    <script type="text/javascript" src="/js/jquery.cookie.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-  </body>
-</html>
     

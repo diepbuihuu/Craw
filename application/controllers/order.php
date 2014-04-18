@@ -16,7 +16,11 @@ class Order extends Nhabuon {
         $user_id = $this->session->userdata('user_id');
         $orders = $this->order_model->getByUser($user_id);
         $data = array ('orders' => $orders);
+        $data['user_id'] = $this->session->userdata('user_id');
+        $data['username'] = $this->session->userdata('username');
+        $this->load->view('element/header',$data);
         $this->load->view('order/view',$data);
+        $this->load->view('element/footer',$data);
     }
     
     function addToCard() {

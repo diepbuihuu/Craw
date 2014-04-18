@@ -1,131 +1,3 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="/css/home.css" rel="stylesheet">
-  </head>
-  <body>
-      <div class="row nhabuon-nav">
-          <div class="span4 pading5">
-              Tỷ giá ngân hàng: 3462 VNĐ/1 RMB
-          </div>
-          <div class="span2">
-               <button class="btn btn-danger" type="button">Save Link</button>
-          </div>
-          <div class="span2 rfloat pading5">
-              <a href="/index.php/order">Giỏ hàng của tôi</a>
-          </div>
-          <div class="span2 rfloat pading5">
-              <a href="">Đăng ký</a> / <a href="/index.php/authenticate">Đăng nhập</a>
-          </div>
-
-      </div>
-      <div class="slogan"></div>
-      
-      <div class="row menu">
-            <div class="span">
-                <div class="btn-group">
-                    <a class="btn dropdown-toggle menu-item" data-toggle="dropdown" href="#">
-                        Trang chủ
-                    </a>
-                </div>
-                
-            </div>
-            <div class="span">
-                <div class="btn-group">
-                <a class="btn dropdown-toggle menu-item" data-toggle="dropdown" href="#">
-                    Hướng dẫn đặt hàng
-                </a>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a href="#">Tôi muốn tạo đơn hàng</a>
-                    </li>
-                    <li>
-                        <a href="#">Tôi muốn lưu lại link sản phẩm</a>
-                    </li>
-                    <li>
-                        <a href="#">Tôi muốn xem lại đơn hàng</a>
-                    </li>
-                </ul>
-              </div>
-            </div>
-            <div class="span">
-                <div class="btn-group">
-                <a class="btn dropdown-toggle menu-item" data-toggle="dropdown" href="#">
-                    Bảng giá
-                </a>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a href="#">Giá vận tải Trung - Việt</a>
-                    </li>
-                    <li>
-                        <a href="#">Giá vận tải liên tỉnh</a>
-                    </li>
-                    <li>
-                        <a href="#">Giá vận tải nội thành</a>
-                    </li>
-                </ul>
-              </div>
-                
-            </div>
-            <div class="span">
-                <div class="btn-group">
-                <a class="btn dropdown-toggle menu-item" data-toggle="dropdown" href="#">
-                    Thông tin liên hệ và thanh toán
-                </a>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a href="#">Thanh toán online</a>
-                    </li>
-                    <li>
-                        <a href="#">Chuyển khoản</a>
-                    </li>
-                    <li>
-                        <a href="#">Thanh toán bằng tiền mặt</a>
-                    </li>
-                </ul>
-              </div>
-                
-            </div>
-            <div class="span">
-                <div class="btn-group">
-                <a class="btn dropdown-toggle menu-item" data-toggle="dropdown" href="#">
-                    Thông báo
-                </a>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a href="#">Thông báo tuyển dụng</a>
-                    </li>
-                    <li>
-                        <a href="#">Thông báo dịch vụ mới</a>
-                    </li>
-                    <li>
-                        <a href="#">Khuyến mại lớn</a>
-                    </li>
-                </ul>
-                </div>
-            </div>
-            <div class="span">
-                <div class="btn-group">
-                <a class="btn dropdown-toggle menu-item" data-toggle="dropdown" href="#">
-                    Góc nhà buôn
-                </a>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a href="#">Mua hàng hiệu quả</a>
-                    </li>
-                    <li>
-                        <a href="#">Thanh toán hiệu quả</a>
-                    </li>
-                </ul>
-                </div>
-                
-            </div>     
-      </div>
       
       <div class="pading10">
           <div class="site_image"></div>
@@ -139,10 +11,14 @@
                       <b>CLICK ĐỂ MUA HÀNG NGAY</b>
                   </div>
                   <div class="other_site">
-                      <img class="taobao_link" src="/img/taobao.png">         
+                      <a href="/index.php/taobao" target="_blank">
+                        <img class="taobao_link" src="/img/taobao.png">      
+                      </a>
                   </div>
                   <div class="other_site">
-                      <img class="tmall_link" src="/img/tmall.png">  
+                      <a href="/index.php/tmall" target="_blank">
+                        <img class="tmall_link" src="/img/tmall.png">  
+                      </a>
                   </div>
                   <div class="other_site">
                       <img class="jd_link" src="/img/jd.png">  
@@ -249,12 +125,4 @@
               <div class="rfloat">Hotline:&nbsp;0123456789</div> 
           </div>
       </div>
-      
-      
-    
-    <script type="text/javascript" src="/js/jquery.js"></script>
-    <script type="text/javascript" src="/js/jquery.cookie.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-  </body>
-</html>
-    
+          
