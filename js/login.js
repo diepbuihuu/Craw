@@ -23,7 +23,7 @@ $(document).ready(function(){
             , function(json) {
                 var response = JSON.parse(json);
                 if (response.status === 1) {
-                    window.location.href = "/index.php/userDashboard";
+                    window.location.href = "/index.php/home";
                 } else {
                     alert(response.message);
                 }

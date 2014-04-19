@@ -1,0 +1,165 @@
+/* 
+    Document   : home
+    Created on : Apr 17, 2014, 9:51:41 AM
+    Author     : diepbh
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+.nhabuon-nav {
+    padding: 3px 15px;
+    font-size: 14px;
+    color: black;
+    height: 30px;
+    background-color: #BEC3C4;
+}
+
+.menu {
+    padding: 0px 15px;
+    font-size: 14px;
+    color: white;
+    height: 40px;
+    background-color: #BF2E33;
+}
+.menu .span {
+    cursor: pointer;
+}
+.menu-item {
+    background: transparent;
+    color: white;
+    height: 25px;
+    padding-top: 10px;
+    border:none;
+}
+
+.pading5 {
+    padding: 5px;
+}
+.pading10 {
+    padding: 10px;
+}
+.pading20 {
+    padding: 20px;
+}
+
+.rfloat {
+    float: right;
+}
+.lfloat {
+    float: left;
+}
+
+.slogan img{
+    width: 100%;
+}
+.site_image img{
+    width: 100%;
+}
+
+.notification {
+    background-color: #F79665;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.home_main {
+    float: left;
+    width: 66%;
+}
+
+.home_extra {
+    float: left;
+    width: 30%;
+    padding-left: 3%;
+}
+.border_bottom {
+    border-bottom: 2px solid black;
+}
+
+.other_site {
+    float: left;
+    width: 23%;
+    padding: 5px;
+    margin-top: 20px;
+}
+
+.news_box {
+    width: 45%;
+}
+
+.news_box_title {
+    background-color: #BF2E33;
+    padding:10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+}
+.addition_site {
+    float: right;
+}
+
+.news_box {
+    margin-top: 20px;
+}
+
+.link_item {
+    padding:5px;
+}
+
+body {
+    background-color: #e5e5e5;
+}
+
+.news_box_body {
+    background-color: white;
+}
+.product_box {
+    margin-top: 30px;
+    font-weight: bold;
+}
+.product_box_title {
+    color: #BF2E33;
+}
+.product {
+    width: 23%;   
+    padding: 1%;
+    float: left;
+}
+.image_demo {
+    background-color: blue;
+    height: 200px;
+}
+.video_container {
+    height: 300px;
+}
+.contact_info {
+    margin-top: 30px;
+    border-radius: 5px;
+    background-color: white;
+}
+.info_underline {
+    float: left;
+    height: 14px;
+    border-bottom: 1px solid #BF2E33;
+}
+.contact_detail {
+    clear: both;
+    height: 200px;
+}
+.account_detail {
+    clear: both;
+    height: 200px;
+}
+.footer {
+    color: #BF2E33;
+    background-color: white;
+    margin: 10px;
+    padding: 10px;
+    height: 20px;
+}
