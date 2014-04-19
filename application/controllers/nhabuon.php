@@ -36,14 +36,14 @@ function curl_exec_follow($ch, &$maxredirect = null) {
   $user_agent = "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.7.5)".
                 " Gecko/20041107 Firefox/1.0";
   curl_setopt($ch, CURLOPT_USERAGENT, $user_agent );
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
   $mr = $maxredirect === null ? 20 : intval($maxredirect);
-
+  
   if (ini_get('open_basedir') == '') {
 
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, $mr > 0);
-    curl_setopt($ch, CURLOPT_MAXREDIRS, $mr);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_MAXREDIRS, $mr);   
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
   } else {

@@ -63,8 +63,6 @@ class Tmall extends Nhabuon {
         $injectObject .= '<link href="/css/add_tmall.css" rel="stylesheet">';
 //        $output = str_replace('</body>', $injectObject.'</body>', $output);
         $output = $output . $injectObject;
-        setcookie('product_url', $url, time() + 3600, '/index.php');
-        setcookie('original_url', "", time() + 3600, '/index.php');
         echo $output;
     }
     
