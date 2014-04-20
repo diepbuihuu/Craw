@@ -87,7 +87,7 @@ $(document).ready(function() {
                     var baseURL = '/index.php/tmall';
                     var target = $(this).attr('href');
                     
-                    if (target.indexOf('taobao') !== -1) {
+                    if (target.indexOf('tmall') === -1 && target.indexOf('taobao') !== -1) {
                         baseURL = '/index.php/taobao';
                     }
                     
