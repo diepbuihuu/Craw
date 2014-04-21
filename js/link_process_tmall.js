@@ -33,7 +33,7 @@ $(document).ready(function() {
 //        return false;
 //    });
     $('a').live('click',function() {
-        if ($(this).attr('id') === 'J_LinkBasket') {
+        if ($(this).attr('id') === 'J_LinkBasket' || $(this).attr('id') === 'J_LinkBuy') {
             // order process
             var numAttr = $('.J_TSaleProp').length;
             if ($('.J_TSaleProp .tb-selected').length < numAttr) {
@@ -81,7 +81,7 @@ $(document).ready(function() {
             
         } else {
             var href = $(this).attr('href'); 
-            if (href !== "#" && href.indexOf('?') !== 0) {
+            if (href !== "#" && href.indexOf('?') !== 0 && href !== 'javascript:;') {
                 if (typeof $(this).data('injected') === 'undefined') {
                     $(this).data('injected', true);
                     var baseURL = '/index.php/tmall';
