@@ -21,7 +21,7 @@ $(document).ready(function() {
         return false;
     });
     $('a').live('click',function() {
-        if (!$(this).parent().hasClass('tb-btn-add') && !$(this).hasClass('J_LinkAdd')) {
+        if (!$(this).parent().hasClass('do-purchase') && !$(this).hasClass('do-cart')) {
             var href = $(this).attr('href'); 
             if (href !== "#" && href !== 'javascript:;') {
                 if (typeof $(this).data('injected') === 'undefined') {
@@ -42,7 +42,7 @@ $(document).ready(function() {
                 return false;
             }
             var currency = $('#J_StrPrice .tb-rmb').text();
-            var price = $('#J_StrPrice .tb-rmb-num').text();
+            var price = $('.mod-detail-retailprice').text().match(/[\d\.]+/)[0];
             var number = $('#J_IptAmount').val();
             var product_name = $("#detail .tb-summary h3.tb-item-title").text();
             var product_url = $('#product_url').val();
