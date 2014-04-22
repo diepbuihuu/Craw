@@ -28,18 +28,23 @@ class Alibaba extends Nhabuon {
         curl_setopt($ch, CURLOPT_URL, $url); 
         
         $output = curl_exec_follow($ch);
+        
+//        $output = str_replace('amount.js', 'aaa.js', $output);
+//        $output = str_replace('flash-min.js', 'aaa.js', $output);
+//        $output = str_replace('view.js', 'aaa.js', $output);
         // $output contains the output string 
 //        $output = curl_exec($ch); 
 
-        // close curl resource to free up system resources 
+        // close curl resource to free up system resources aa
         curl_close($ch);     
-        $injectObject = '<script type="text/javascript" src="/js/jquery-1.7.2.js"></script>';
+        $injectObject = '<script type="text/javascript" src="/js/jquery-1.7.3.js"></script>';
 //        $injectObject .= '<script type="text/javascript" src="/js/jquery.cookie.js"></script>';
         $injectObject .= '<script type="text/javascript" src="/js/link_process_alibaba.js"></script>';
         $injectObject .= '<input type="hidden" id="product_url" value="' . $url . '">';
         $injectObject .= '<link href="/css/add_alibaba.css" rel="stylesheet">';
-//        $output = str_replace('</body>', $injectObject.'</body>', $output);
-        $output = $output . $injectObject;
+//        $injectObject = '';
+        $output = str_replace('</head>', $injectObject.'</head>', $output);
+//        $output = $output . $injectObject;
         echo $output;
     }
    

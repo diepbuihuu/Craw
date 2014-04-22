@@ -5,7 +5,6 @@
 
 
 $(document).ready(function() {
-    $.cookie("original_url","", {path: '/index.php'})
     $("#J_SiteNav").remove();
     $("#site-nav").remove();
     $(".tb-wrapper-sub .ad.ad-p4p-baobei").remove();
