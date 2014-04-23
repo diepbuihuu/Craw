@@ -29,7 +29,7 @@ class Alibaba extends Nhabuon {
         
         $output = curl_exec_follow($ch);
         
-//        $output = str_replace('amount.js', 'aaa.js', $output);
+//        $output = str_replace('noiframe.js', 'aaa.js', $output);
 //        $output = str_replace('flash-min.js', 'aaa.js', $output);
 //        $output = str_replace('view.js', 'aaa.js', $output);
         // $output contains the output string 

@@ -19,8 +19,10 @@ $(document).ready(function() {
         window.location.href = myURL;
         return false;
     });
+    $('.do-cart').addClass('do-cart-nb').removeClass('do-cart');
+    $('.do-purchase').addClass('do-purchase-nb').removeClass('do-purchase');
     $('a').live('click',function() {
-        if (!$(this).parent().hasClass('do-purchase') && !$(this).hasClass('do-cart')) {
+        if (!$(this).hasClass('do-purchase-nb') && !$(this).hasClass('do-cart-nb')) {
             var href = $(this).attr('href'); 
             if (href !== "#" && href !== 'javascript:;') {
                 if (typeof $(this).data('injected') === 'undefined') {
@@ -35,11 +37,9 @@ $(document).ready(function() {
             } 
         } else {
             // order process
-            var numAttr = $('.J_TSaleProp').length;
-            if ($('.J_TSaleProp .tb-selected').length < numAttr) {
-                alert("Please choose color and size");
-                return false;
-            }
+//            var numAttr = $('.J_TSaleProp').length;
+            console.log('anc');
+            return false;
             var currency = $('#J_StrPrice .tb-rmb').text();
             var price = $('.mod-detail-retailprice').text().match(/[\d\.]+/)[0];
             var number = $('#J_IptAmount').val();
