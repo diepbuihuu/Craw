@@ -10,6 +10,10 @@ class Home extends CI_Controller {
     }
     
     function index() {
+        if (!empty($redirect_url)) {
+            $this->session->unset_userdata(array('redirect_url' => ''));
+            redirect($redirect_url);
+        }
         $data = array();
         if ($this->session->userdata('login')) {
             $data['user_id'] = $this->session->userdata('user_id');
