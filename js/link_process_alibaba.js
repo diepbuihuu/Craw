@@ -38,49 +38,60 @@ $(document).ready(function() {
         } else {
             // order process
 //            var numAttr = $('.J_TSaleProp').length;
-            console.log('anc');
-            return false;
-            var currency = $('#J_StrPrice .tb-rmb').text();
-            var price = $('.mod-detail-retailprice').text().match(/[\d\.]+/)[0];
-            var number = $('#J_IptAmount').val();
-            var product_name = $("#detail .tb-summary h3.tb-item-title").text();
+            var user_data = $('.list .image').attr('title');
+            
+            var colorUrl = '';
+            var imageSelector = $('.list .image .box-img img');
+            if (imageSelector.length > 0) {
+                colorUrl = imageSelector.attr('src');
+            }
+            var products = [];
+            if ($('.list tbody tr').length > 0) {
+                $('.list tbody tr').each(function(){
+                    var product = {
+                        name: $.trim($(this).find('.name').text()),
+                        price: $.trim($(this).find('.price').text()),
+                        amount: $(this).find('.amount-input').val()
+                    }
+                    products.push(product);
+                });
+            } else {
+                try {
+                    var range = $('.last-row').data('range');
+                    var product = {
+                        name : '',
+                        price: range.price,
+                        amount: $('.amount-input').val()
+                    }
+                    products.push(product);
+                } catch (e) {
+                    console.log(e);
+                }
+                
+            }
+            
+            var shop_name = $('.supplierinfo-body .tplogo').attr('href');
+            var product_name = $.trim($('#mod-detail-hd').text());
             var product_url = $('#product_url').val();
-            var user_data = '';
-            $('.J_TSaleProp').each(function(){
-                user_data += $(this).data('property') + ':' + $.trim($(this).find('.tb-selected a').text()) + ', ';
-            })
-            var shop_name = $('.J_TShopSummary .shop-name a').attr('href');
-//            var color = $.trim($('.J_TSaleProp .tb-selected:first a').text());
-//            var size = $.trim($('.J_TSaleProp .tb-selected:last a').text());
-//            
-//            // if color ans size in revert order
-//            var sizeCheck = $.trim($('.J_TMySizeProp .J_TSaleProp .tb-selected a').text());
-//            if ((sizeCheck !== '' && sizeCheck === color) || $('.J_TSaleProp:first').data('property') === '尺码') {
-//                var tmp = color;
-//                color = size;
-//                size = tmp;
-//                
-//            }
             
             var data = {
-                price: currency + price,
-                number: number,
+                products: JSON.stringify(products),
                 product_name: product_name,
                 product_url: product_url,
                 shop_name: shop_name,
-                user_data: user_data
+                user_data: user_data,
+                color_url: colorUrl
             }
             
-            var message = "Your are ordering " + number + 'product(s)s "' + product_name + '"\n'
-                + 'price: ' +  currency + price + '/product\n'
-                + 'category:' + user_data + '\n'
+            var message = "Are you sure want to order";
             if (confirm(message)) {
-                $.post("/index.php/order/addToCard", data, function(json) {
+                $.post("/index.php/order/addToCardAlibaba", data, function(json) {
                     message = json + '\n' + "Do you want to check your Cart now?"
                     if (confirm(message)) {
                         window.location.href = '/index.php/order'
                     }
                 })
+                
             }
             return false;
         }

@@ -32,7 +32,7 @@ class Order extends Nhabuon {
             'product_name' => $this->input->post("product_name"),
             'price' => $this->input->post("price"),
             'number' => $this->input->post("number"),
-            'shop_name' => $this->input->post("shop_name"),
+            'shop_name' => $this->getDomain($this->input->post("shop_name")),
             'user_data' => rtrim($this->input->post("user_data"),', '),
             'status' => '1',
             'created' => time(),
@@ -46,6 +46,42 @@ class Order extends Nhabuon {
         $this->order_model->insert($data);
         
         echo "Add to card success";
+    }
+    
+    function addToCardAlibaba() {
+        
+        $data = array(
+            'user_id' => $this->session->userdata('user_id'),
+            'username' => $this->session->userdata('username'),
+            'product_link' => $this->input->post("product_url"),
+            'product_name' => $this->input->post("product_name"),
+            'shop_name' => $this->getDomain($this->input->post("shop_name")),
+            'color_image' => $this->input->post("color_url"),
+            'status' => '1',
+            'created' => time(),
+            'modified' => time()
+        );
+        
+        if (empty($data['shop_name'])) {
+            $data['shop_name'] = "Not specified";
+        }
+        
+        $color = $this->input->post("user_data");
+        $products = json_decode($this->input->post("products"),true);
+        foreach ($products as $product) {
+            $data['user_data'] = $color . ' ' . $product['name'];
+            $data['price'] = $product['price'];
+            $data['number'] = $product['amount'];
+            $this->order_model->insert($data);
+        }
+
+        echo "Add to card success";
+    }
+    
+    function getDomain($url) {
+        $result = str_replace('http://', '', $url);
+        $paths = explode('.', $result);
+        return $paths[0];
     }
 }
 
