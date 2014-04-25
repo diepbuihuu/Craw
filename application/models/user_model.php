@@ -10,6 +10,21 @@ class User_model extends CI_Model {
         // Call the Model constructor
         parent::__construct();
     }
+    
+    function getProvinces() {
+        $query = $this->db->get('provinces');
+        return $query->result();
+    }
+    
+    function getDistricts($provinceId) {
+        $query = $this->db->get_where('districts', array('province_id' => $provinceId));
+        return $query->result();
+    }
+    
+    function getTowns($districtId) {
+        $query = $this->db->get_where('towns', array('district_id' => $districtId));
+        return $query->result();
+    }
 
     function insert($data)
     {

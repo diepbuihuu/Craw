@@ -20,6 +20,41 @@ $(document).ready(function(){
         $('.alert').show();
     }
     
+    $('#province').change(function(){
+        var provinceId = $(this).val();
+        if (provinceId === '') {
+            $('#district').html('');
+            $('#town').html('');
+            return;
+        }
+        var url = '/index.php/user/getDistrict/' + provinceId;
+        $.get(url, function(response){
+            var html = '';
+            var items = JSON.parse(response);
+            for (var i in items) {
+                var item = items[i];
+                html += '<option value="' + item.district_id + '">' + item.district_name + '</option>';
+            }
+            $('#district').html(html);
+            $('#district').trigger('change');
+        })
+    })
+    
+     $('#district').change(function(){
+        var districtId = $(this).val();
+
+        var url = '/index.php/user/getTown/' + districtId;
+        $.get(url, function(response){
+            var html = '';
+            var items = JSON.parse(response);
+            for (var i in items) {
+                var item = items[i];
+                html += '<option value="' + item.town_id + '">' + item.town_name + '</option>';
+            }
+            $('#town').html(html);
+        })
+    })
+    
     function checkLogin() {
         var username = $('#username').val();
         var password = $('#password').val();
@@ -27,9 +62,21 @@ $(document).ready(function(){
         var email = $('#email').val();
         var phone = $('#phone').val();
         var address = $('#address').val();
-        if (checkRegisterInfo(username, password, password_confirm, email, phone, address)){
+        var province = $('#province').val();
+        var district = $('#district').val();
+        var town = $('#town').val();
+        if (checkRegisterInfo(username, password, password_confirm, email, phone, address, province, district, town)){
             $.post("/index.php/user/register_action",
-            {username: username, password: password, email: email, phone: phone, address: address}
+            {
+                username: username, 
+                password: password, 
+                email: email, 
+                phone: phone, 
+                province: province, 
+                district: district, 
+                town: town, 
+                address: address
+            }
             ,function(json) {
                 var response = JSON.parse(json);
                 if (response.status === 1) {
@@ -44,7 +91,7 @@ $(document).ready(function(){
     
     function checkRegisterInfo(username, password, password_confirm, email, phone, address) {
         for(var i in arguments) {
-            if (arguments[i] === '') {
+            if (arguments[i] === '' || arguments[i] === null) {
                 showError("Missing infomation");
                 return false;
             }

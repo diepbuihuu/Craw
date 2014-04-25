@@ -1,6 +1,11 @@
 <?php
 
 class User extends CI_Controller {
+    /**
+     *
+     * @var User_model 
+     */
+    //private $user_model;
     
     public function __construct() {  
         parent::__construct();
@@ -18,7 +23,9 @@ class User extends CI_Controller {
     }
     
     function register() {
-        $this->load->view('user/register');
+        $provinces = $this->user_model->getProvinces();
+        $data = array('provinces' => $provinces);
+        $this->load->view('user/register',$data);
     }
     
     function register_action() {
@@ -27,6 +34,9 @@ class User extends CI_Controller {
             'password' => md5($this->input->post("password")),
             'email' => $this->input->post("email"),
             'phone' => $this->input->post("phone"),
+            'province_id' => $this->input->post("province"),
+            'district_id' => $this->input->post("district"),
+            'town_id' => $this->input->post("town"),
             'address' => $this->input->post("address")
         );
         if ($this->user_model->validateRegisterInfo($data)) {
@@ -66,6 +76,14 @@ class User extends CI_Controller {
     
     function index() {
         echo "index";
+    }
+    
+    function getDistrict($provinceId) {
+        echo json_encode($this->user_model->getDistricts($provinceId));
+    }
+    
+    function getTown($districtId) {
+        echo json_encode($this->user_model->getTowns($districtId));
     }
 
 }
