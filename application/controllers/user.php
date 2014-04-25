@@ -34,6 +34,7 @@ class User extends CI_Controller {
             'password' => md5($this->input->post("password")),
             'email' => $this->input->post("email"),
             'phone' => $this->input->post("phone"),
+            'account' => $this->input->post("account"),
             'province_id' => $this->input->post("province"),
             'district_id' => $this->input->post("district"),
             'town_id' => $this->input->post("town"),

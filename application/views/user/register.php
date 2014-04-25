@@ -29,6 +29,9 @@
             <div>
                 <input id="phone" placeholder="Phone" type="text">
             </div>
+            <div>
+                <input id="account" placeholder="Account" type="text">
+            </div>
         </div>
           
         <div>

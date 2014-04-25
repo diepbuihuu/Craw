@@ -61,6 +61,7 @@ $(document).ready(function(){
         var password_confirm = $('#password_confirm').val();
         var email = $('#email').val();
         var phone = $('#phone').val();
+        var account = $('#account').val();
         var address = $('#address').val();
         var province = $('#province').val();
         var district = $('#district').val();
@@ -72,6 +73,7 @@ $(document).ready(function(){
                 password: password, 
                 email: email, 
                 phone: phone, 
+                account: account, 
                 province: province, 
                 district: district, 
                 town: town, 

@@ -11,6 +11,11 @@ class User_model extends CI_Model {
         parent::__construct();
     }
     
+    function get($userId) {
+        $query = $this->db->get_where('users', array('id' => $userId));
+        return $query->row();
+    }
+    
     function getProvinces() {
         $query = $this->db->get('provinces');
         return $query->result();
