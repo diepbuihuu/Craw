@@ -49,6 +49,15 @@ body {
     margin-top: 30px;
     border: 1px solid #C9BEBE;
 }
+.ship_fee_cell{
+    border: 1px solid #C9BEBE;
+    width: 200px;
+}
+.ship_fee_cell div{
+    width: 200px;
+    overflow-x: hidden;
+    vertical-align: middle;
+}
 #bill_summary {
     width: 40%; padding: 2%;float: left;margin-top: 30px;
     font-size: 30px;
@@ -57,3 +66,6 @@ body {
     height: 40px;
 }
 #bill_summary tr :nth-child(2) {text-align: right;}
+.table {
+    margin-bottom: 0px;
+}

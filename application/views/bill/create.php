@@ -180,7 +180,7 @@
 
                                 <?php if ($index === 0): ?>
                                     <td rowspan="<?php echo count($shopOrders); ?>" class ="ship_fee_cell">
-                                        <div class ="ship_fee_cell">
+                                        <div>
                                             <?php echo $order->shop_name ?>
                                         </div>
 
