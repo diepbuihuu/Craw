@@ -16,6 +16,11 @@ thead {
     width: 200px;
     overflow-x: scroll;
 }
+.ship_fee_cell {
+    width: 200px;
+    overflow-x: hidden;
+    vertical-align: middle;
+}
 .username_header {
     width: 200px;
 }

@@ -91,7 +91,7 @@ $(document).ready(function(){
             
     }
     
-    function checkRegisterInfo(username, password, password_confirm, email, phone, address) {
+    function checkRegisterInfo(username, password, password_confirm, email, phone, address, province, district, town) {
         for(var i in arguments) {
             if (arguments[i] === '' || arguments[i] === null) {
                 showError("Missing infomation");

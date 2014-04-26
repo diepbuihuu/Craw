@@ -28,6 +28,36 @@ class User extends CI_Controller {
         $this->load->view('user/register',$data);
     }
     
+    function update_action() {
+        {
+        $data = array(
+            'username' => $this->input->post("username"),
+            'email' => $this->input->post("email"),
+            'phone' => $this->input->post("phone"),
+            'account' => $this->input->post("account"),
+            'province_id' => $this->input->post("province"),
+            'district_id' => $this->input->post("district"),
+            'town_id' => $this->input->post("town"),
+            'address' => $this->input->post("address")
+        );
+        $userId = $this->session->userdata('user_id');
+        if ($this->user_model->validateRegisterInfo($data, $userId)) {
+            $this->user_model->update($data, $userId);
+            $response = array (
+                "status" => 1,
+                "message" => "Complete successfully"
+            );
+        } else {
+            $message = $this->user_model->message;
+            $response = array (
+                "status" => 0,
+                "message" => $message
+            );
+        }
+        echo json_encode($response);
+    }
+    }
+            
     function register_action() {
         $data = array(
             'username' => $this->input->post("username"),

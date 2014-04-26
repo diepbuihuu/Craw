@@ -34,3 +34,26 @@ body {
 .input_content input,  .input_content select{
     width: 60%;
 }
+.alert {
+    display: none;
+}
+#error-message {
+    font-weight: bold;
+    color: red;
+}
+#success-message {
+    font-weight: bold;
+}
+
+#order_table_container {
+    margin-top: 30px;
+    border: 1px solid #C9BEBE;
+}
+#bill_summary {
+    width: 40%; padding: 2%;float: left;margin-top: 30px;
+    font-size: 30px;
+}
+#bill_summary tr {
+    height: 40px;
+}
+#bill_summary tr :nth-child(2) {text-align: right;}

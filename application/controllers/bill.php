@@ -42,8 +42,9 @@ class Bill extends Nhabuon {
         $provinces = $this->user_model->getProvinces();
         $districts = $this->user_model->getDistricts($user->province_id);
         $towns = $this->user_model->getTowns($user->district_id);
+        $orders = $this->order_model->getByUser($userId);
 //        var_dump($provinces); die;
-        $data = compact('user', 'provinces', 'districts', 'towns');
+        $data = compact('user', 'provinces', 'districts', 'towns', 'orders');
         $this->load->view('bill/create',$data);
     }
     

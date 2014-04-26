@@ -45,7 +45,7 @@ class User_model extends CI_Model {
         return true;
     }
     
-    function validateRegisterInfo($data) {
+    function validateRegisterInfo($data, $id = null) {
         foreach ($data as $key => $field) {
             if ($field === "") {
                 $this->message = $key . " is missing";
@@ -55,7 +55,7 @@ class User_model extends CI_Model {
         if (!$this->validateEmail($data['email']) || !$this->validateNumber($data['phone'])) {
             return FALSE;
         }
-        return $this->checkDupplicate($data);
+        return $this->checkDupplicate($data, $id);
     }
     
     function validateEmail($email) {
@@ -80,10 +80,20 @@ class User_model extends CI_Model {
         }
     }
     
-    function checkDupplicate($data) {
-        $this->db->where('username', $data['username']);
-        $this->db->or_where('email', $data['email']);
-        $this->db->or_where('phone', $data['phone']);
+    function update($data, $userId) {
+        $this->db->where('id', $userId);
+        $this->db->update('users', $data);
+    }
+    
+    function checkDupplicate($data, $id) {
+        
+        $whereClause = '(username = "' . $data['username'] . '" OR email = "' 
+                        . $data['email'] . '" OR phone = "' . $data['phone'] . '")';
+        
+        $this->db->where($whereClause);       
+        if (!is_null($id)) {
+            $this->db->where('id != ', $id);
+        }
         $query = $this->db->get('users');
         if ($query->num_rows() > 0) {
             $user = $query->row();
