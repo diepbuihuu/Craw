@@ -48,6 +48,7 @@ class Bill extends Nhabuon {
         $this->load->view('bill/create',$data);
     }
     
+    
 }
 
 ?>

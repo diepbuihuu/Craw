@@ -34,6 +34,7 @@ $(document).ready(function(){
             $fee_cell.attr('rowspan', rowspan - 1);
         }
         $tr.remove();
+        calculateTotal();
     })
     
     function updateInfo() {
@@ -82,5 +83,26 @@ $(document).ready(function(){
     function showError(message) {
         $('#error-message').html(message);
         $('.alert').show();
+    }
+    
+    calculateTotal();
+    
+    function calculateTotal() {
+        var total_amount = 0, total_fee = 0;
+        $('#order_table tbody tr').each(function(){
+            if ($(this).attr('abbr') !== 'total') {
+                var amount = parseInt($.trim($(this).find('.amount_cell').text()))
+                var fee = parseFloat($.trim($(this).find('.fee_cell').text()))
+                if (!isNaN(amount)) {
+                    total_amount += amount;
+                }
+                if (!isNaN(fee)) {
+                    total_fee += fee;
+                }
+                
+            }
+        })
+        $('#order_table tbody tr[abbr=total]').find('.amount_total').text(total_amount);
+        $('#order_table tbody tr[abbr=total]').find('.fee_total').text(total_fee);
     }
 })

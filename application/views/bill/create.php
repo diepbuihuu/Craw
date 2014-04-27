@@ -170,7 +170,7 @@
                                     <?php echo trim($order->user_data); ?>
                                 </td>
 
-                                <td>
+                                <td class="amount_cell">
                                     <?php echo $order->number ?>
                                 </td>
 
@@ -187,7 +187,7 @@
                                     </td>
                                 <?php endif; ?>
 
-                                <td>
+                                <td class="fee_cell">
                                     <?php echo $order->price ?>
                                 </td>
                                 <td>
@@ -196,6 +196,17 @@
                             </tr>
                         <?php endforeach; ?>
                     <?php endforeach; ?>
+                            <tr abbr="total">
+                                <td></td>
+                                <td>Tong</td>
+                                <td></td>
+                                <td class="amount_total">0</td>
+                                <td></td>
+                                <td>?</td>
+                                <td class="fee_total">0</td>
+                                <td class=""></td>
+                                <td></td>
+                            </tr>
                 </tbody>
             </table>
         </div>
