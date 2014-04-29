@@ -1,6 +1,6 @@
 <?php
 
-class Order_model extends CI_Model {
+class Bill_model extends CI_Model {
 
     public $message;
 
@@ -21,7 +21,6 @@ class Order_model extends CI_Model {
         $this->db->order_by('created', 'DESC');
         $query = $this->db->get('orders', 50);
         $queryData = $query->result();
-        $queryData = $this->formatOrder($queryData);
         $result = array();
         foreach($queryData as $row) {
             $shopName = $row->shop_name;
@@ -32,19 +31,6 @@ class Order_model extends CI_Model {
             }
         }
         return $result;
-    }
-    
-    function formatOrder($orders) {
-        $result = array();
-        foreach ($orders as $index => $order) {
-            $order->price = $this->formatNumber($order->price);
-            $result [] = $order;
-        }
-        return $result;
-    }
-    
-    function formatNumber($str) {
-        return preg_replace('/[^0-9.,]/', '', $str);
     }
 
 }

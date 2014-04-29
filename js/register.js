@@ -61,6 +61,7 @@ $(document).ready(function(){
         var password_confirm = $('#password_confirm').val();
         var email = $('#email').val();
         var phone = $('#phone').val();
+        var account = $('#account').val();
         var address = $('#address').val();
         var province = $('#province').val();
         var district = $('#district').val();
@@ -72,6 +73,7 @@ $(document).ready(function(){
                 password: password, 
                 email: email, 
                 phone: phone, 
+                account: account, 
                 province: province, 
                 district: district, 
                 town: town, 
@@ -89,7 +91,7 @@ $(document).ready(function(){
             
     }
     
-    function checkRegisterInfo(username, password, password_confirm, email, phone, address) {
+    function checkRegisterInfo(username, password, password_confirm, email, phone, address, province, district, town) {
         for(var i in arguments) {
             if (arguments[i] === '' || arguments[i] === null) {
                 showError("Missing infomation");

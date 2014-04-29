@@ -1,0 +1,71 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Apr 4, 2014, 8:46:41 PM
+    Author     : DiepBuiHuu
+*/
+
+body {
+    padding: 20px;
+}
+.header {
+    font-size: 25px;
+    width: 80%;
+    border-bottom: 1px solid #C9BEBE;
+    padding-bottom: 10px;
+}
+.box_title {
+    margin-bottom: -10px;
+    background-color: #C9BEBE;
+    margin-left: 20px;
+    width: 150px;
+    text-align: center;
+}
+.box_content {
+    border: 1px solid #C9BEBE;
+}
+.input_title {
+    width: 30%;
+    float: left;
+}
+.input_content input,  .input_content select{
+    width: 60%;
+}
+.alert {
+    display: none;
+}
+#error-message {
+    font-weight: bold;
+    color: red;
+}
+#success-message {
+    font-weight: bold;
+}
+
+#order_table_container {
+    margin-top: 30px;
+    border: 1px solid #C9BEBE;
+}
+.ship_fee_cell{
+    border: 1px solid #C9BEBE;
+    width: 200px;
+}
+.ship_fee_cell div{
+    width: 200px;
+    overflow-x: hidden;
+    vertical-align: middle;
+}
+#bill_summary {
+    width: 40%; padding: 2%;float: left;margin-top: 30px;
+    font-size: 30px;
+}
+#bill_summary tr {
+    height: 40px;
+}
+#bill_summary tr :nth-child(2) {text-align: right;}
+.table {
+    margin-bottom: 0px;
+}
