@@ -13,24 +13,66 @@ class Bill_model extends CI_Model {
 
     function insert($data)
     {
-        $this->db->insert('orders', $data);
+        $this->db->insert('bills', $data);
     }
     
-    function getByUser($userId) {
+    function getCode($userId, $date, $numberInDay) {
+        $numberInDay = $this->format3CharacterNumber($numberInDay);
+        $userId = $this->format3CharacterNumber(intval($userId));
+        $code = $date . '-' . $numberInDay . '-KH'.$userId; 
+        return $code;
+    }
+    
+    function format3CharacterNumber($number) {
+        if ($number < 10) {
+            return '00'.$number;
+        } else if ($number < 100) {
+            return '0' . $number;
+        } else {
+            return $number;
+        }
+    }
+    
+    function getNumberInDay($userId, $date) {
         $this->db->where('user_id', $userId);
+        $this->db->where('date', $date);
+        $this->db->order_by('number_in_day', 'desc');
+        $this->db->limit(1);
+        $queries = $this->db->get('bills');
+        if ($queries->num_rows() === 0) {
+            return 1;
+        } else {
+            $row = $queries->row();
+            return intval($row->number_in_day) + 1;
+        }
+    }
+    function getByUser($userId, $status) {
+        $this->db->where('user_id', $userId);
+        if (!empty($status)) {
+            $this->db->where('status', $status);
+        }
         $this->db->order_by('created', 'DESC');
-        $query = $this->db->get('orders', 50);
+        $query = $this->db->get('bills', 50);
         $queryData = $query->result();
         $result = array();
-        foreach($queryData as $row) {
-            $shopName = $row->shop_name;
-            if (!isset($result[$shopName])) {
-                $result[$shopName] = array($row);
-            } else {
-                $result[$shopName][] = $row;
-            }
+        foreach ($queryData as $row) {
+            $row->created_data = date('d/m/Y', $row->created);
+            $row->status_text = $this->formatStatus($row->status);
         }
-        return $result;
+        return $queryData;
+    }
+    
+    function formatStatus($status) {
+        switch ($status) {
+            case '1':
+                return 'Đã gửi';
+            case '2':
+                return 'Admin đã check';
+            case '3':
+                return 'Đã chốt';
+            default :
+                return $status;
+        }
     }
 
 }

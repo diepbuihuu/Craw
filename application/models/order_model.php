@@ -18,6 +18,7 @@ class Order_model extends CI_Model {
     
     function getByUser($userId) {
         $this->db->where('user_id', $userId);
+        $this->db->where('status', 1);
         $this->db->order_by('created', 'DESC');
         $query = $this->db->get('orders', 50);
         $queryData = $query->result();
@@ -32,6 +33,35 @@ class Order_model extends CI_Model {
             }
         }
         return $result;
+    }
+    
+    function addOrderToBill($updateOrder) {
+        $ids = $updateOrder['ids'];
+        $updateData = $updateOrder['update_data'];
+        if (empty($ids)) {
+            $this->message = "Cannot create empty bill";
+            return false;
+        }
+        
+        $sql = "UPDATE orders SET ";
+        if (!empty($updateData)) {
+            $sql .= 'number=CASE id ';
+            foreach ($updateData as $data) {
+                $sql .= "WHEN {$data['id']} THEN {$data['amount']} ";
+            }
+            $sql .= 'ELSE number END ';
+            $sql .= ',';
+        }
+        $sql .= 'status=2 ';
+        $sql .= 'WHERE id in (' . implode(',', $ids) . ')';
+        $this->db->query($sql);
+        return true;
+    }
+    
+    function delete($userId, $orderIds) {
+        $this->db->where('user_id', $userId);
+        $this->db->where_in('id', $orderIds);
+        $this->db->delete('orders');
     }
     
     function formatOrder($orders) {

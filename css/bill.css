@@ -16,6 +16,7 @@ body {
     width: 80%;
     border-bottom: 1px solid #C9BEBE;
     padding-bottom: 10px;
+    margin-top: 30px;
 }
 .box_title {
     margin-bottom: -10px;
@@ -66,6 +67,18 @@ body {
     height: 40px;
 }
 #bill_summary tr :nth-child(2) {text-align: right;}
+input.amount_value{
+    width: 30px;
+    text-align: center;
+}
 .table {
     margin-bottom: 0px;
+}
+
+ul.horizontal {
+    list-style-type: none;
+}
+ul.horizontal li {
+    margin-left: 30px;
+    float: left;
 }

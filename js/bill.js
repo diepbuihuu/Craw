@@ -23,7 +23,7 @@ $(document).ready(function(){
             
         } else {
             $tmp = $tr;
-            for ($i = 0; $i < 10; $i ++) {
+            for ($i = 0; $i < 100; $i ++) {
                 $tmp = $tmp.prev();
                 if ($tmp.find('.ship_fee_cell').length > 0) {
                     break;
@@ -33,8 +33,21 @@ $(document).ready(function(){
             var rowspan = parseInt($fee_cell.attr('rowspan'));
             $fee_cell.attr('rowspan', rowspan - 1);
         }
+        
+        // mark deleted order
+        var all_delete_order = $('#delete_order').val();
+        var delete_order = $tr.attr('abbr');
+        if (all_delete_order === '') {
+            all_delete_order = delete_order;
+        } else {
+            all_delete_order += ',' + delete_order;
+        }
+        $('#delete_order').val(all_delete_order);
+        
+        
         $tr.remove();
         calculateTotal();
+        
     })
     
     function updateInfo() {
@@ -87,11 +100,39 @@ $(document).ready(function(){
     
     calculateTotal();
     
+    $('.amount_value').change(function(){
+        var $tr = $(this).closest('tr');
+        $tr.addClass('changed');
+        var amount = parseInt($.trim($(this).val()));
+        var price = parseFloat($.trim($tr.find('.price_cell').text()));
+        if (isNaN(amount) || amount < 0) {
+            $(this).val('0');
+        } else {
+            var fee = price * amount;
+            $tr.find('.fee_cell').html(fee);
+            calculateTotal();
+        }
+    })
+    
+    $('.amount_cell .plus').click(function(){
+        var $amount_value = $(this).parent().find('.amount_value');
+        var old_amount = parseInt($amount_value.val());
+        $amount_value.val(old_amount + 1);
+        $amount_value.trigger('change');
+    })
+    
+    $('.amount_cell .minus').click(function(){
+        var $amount_value = $(this).parent().find('.amount_value');
+        var old_amount = parseInt($amount_value.val());
+        $amount_value.val(old_amount - 1);
+        $amount_value.trigger('change');
+    })
+    
     function calculateTotal() {
         var total_amount = 0, total_fee = 0;
         $('#order_table tbody tr').each(function(){
             if ($(this).attr('abbr') !== 'total') {
-                var amount = parseInt($.trim($(this).find('.amount_cell').text()))
+                var amount = parseInt($.trim($(this).find('.amount_cell .amount_value').val()))
                 var fee = parseFloat($.trim($(this).find('.fee_cell').text()))
                 if (!isNaN(amount)) {
                     total_amount += amount;
@@ -104,5 +145,42 @@ $(document).ready(function(){
         })
         $('#order_table tbody tr[abbr=total]').find('.amount_total').text(total_amount);
         $('#order_table tbody tr[abbr=total]').find('.fee_total').text(total_fee);
+    }
+    
+    $('#create_bill').click(function(){
+         $.post("/index.php/bill/create_action",
+            {
+                delete_order: $('#delete_order').val(),
+                update_order: getBillData()
+            }
+            ,function(json) {
+                try {
+                    var response = JSON.parse(json);
+                    if (response.status == '1') {
+                        window.location.href = '/index.php/bill';
+                    } else {
+                        alert(response.message);
+                    }
+                } catch (e) {
+                    console.log(json);
+                }
+                
+            })
+    })
+    
+    function getBillData() {
+        var updateData = [];
+        var ids = [];
+         $('#order_table tbody tr').each(function(){
+            if ($(this).attr('abbr') !== 'total') {
+                var id = $(this).attr('abbr');
+                var amount = $.trim($(this).find('.amount_cell .amount_value').val());
+                ids.push(id);
+                if ($(this).hasClass('changed')) {
+                    updateData.push({id:id, amount:amount});
+                }
+            }
+        })
+        return JSON.stringify({ids:ids, update_data: updateData});
     }
 })

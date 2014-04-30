@@ -22,6 +22,7 @@ class Home extends CI_Controller {
             $data['username'] = $this->session->userdata('username');
         }
         $this->load->view('element/header', $data);
+        $this->load->view('element/menu');
         $this->load->view('home/index');
         $this->load->view('element/footer');
     }

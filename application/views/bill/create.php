@@ -171,7 +171,9 @@
                                 </td>
 
                                 <td class="amount_cell">
-                                    <?php echo $order->number ?>
+                                    <button class="minus">-</button>
+                                    <input class="amount_value" value="<?php echo $order->number ?>">
+                                    <button class="plus">+</button>
                                 </td>
 
                                 <td class="price_cell">
@@ -188,7 +190,7 @@
                                 <?php endif; ?>
 
                                 <td class="fee_cell">
-                                    <?php echo $order->price ?>
+                                    <?php echo floatval($order->price) * intval($order->number); ?>
                                 </td>
                                 <td>
                                     <button class="remove_button"> Xoa </button>
@@ -270,9 +272,10 @@
             </div>
             <div style="clear: both"></div>
         </div>
+        <input id="delete_order" type="hidden">
         <div style="margin: 70px;">
             <div style="float: right; margin-bottom: 70px;">
-                Gửi đơn để chúng tôi có thể kiểm tra phí ship nội địa cho bạn >> <button> Gửi đơn </button>
+                Gửi đơn để chúng tôi có thể kiểm tra phí ship nội địa cho bạn >> <button id="create_bill"> Gửi đơn </button>
             </div>
         </div>
 

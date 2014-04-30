@@ -23,16 +23,15 @@ class Bill extends Nhabuon {
     }
     
     function index() {
-        if (!$this->checkLogin()) {
-            redirect('/authenticate');
-        }
+        $status = $this->input->get('status');
+
         $user_id = $this->session->userdata('user_id');
-        $orders = $this->order_model->getByUser($user_id);
-        $data = array ('orders' => $orders);
+        $bills = $this->bill_model->getByUser($user_id, $status);
+        $data = array ('bills' => $bills);
         $data['user_id'] = $this->session->userdata('user_id');
         $data['username'] = $this->session->userdata('username');
         $this->load->view('element/header',$data);
-        $this->load->view('order/view',$data);
+        $this->load->view('bill/list',$data);
         $this->load->view('element/footer',$data);
     }
     
@@ -48,6 +47,44 @@ class Bill extends Nhabuon {
         $this->load->view('bill/create',$data);
     }
     
+    function edit(){
+        echo 'Release soon';
+    }
+    
+    function create_action() {
+        try {
+            $userId = $this->session->userdata('user_id');
+            $deleteOrder = json_decode($this->input->post("delete_order"));
+            $updateOrder =  json_decode($this->input->post("update_order"),true);
+            
+            $add = $this->order_model->addOrderToBill($updateOrder);
+            if (!$add) {
+                echo '{"status":"0","message":"' . $this->order_model->message . '"}';
+                return;
+            }
+            if (!empty($deleteOrder)){
+                $this->order_model->delete($userId, $deleteOrder);
+            }
+            
+            $date = date('m.d.Y');
+            $numberInDay = $this->bill_model->getNumberInDay($userId, $date);
+
+            $data = array(
+                'user_id' => $userId,
+                'date' => $date,
+                'number_in_day' => $numberInDay,
+                'code' => $this->bill_model->getCode($userId, $date, $numberInDay),
+                'order_item' => implode(',', $updateOrder['ids']),
+                'created' => time()
+            ); 
+            $this->bill_model->insert($data);
+            echo '{"status":"1","message":"Complete successfully"}';
+        } catch (Exception $ex) {
+            echo '{"status":"0","message":"' . $ex->getMessage() . '"}';
+            
+        }
+        
+    }
     
 }
 
