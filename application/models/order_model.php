@@ -16,9 +16,14 @@ class Order_model extends CI_Model {
         $this->db->insert('orders', $data);
     }
     
-    function getByUser($userId) {
+    function getByUser($userId, $orderId = '') {
         $this->db->where('user_id', $userId);
-        $this->db->where('status', 1);
+        if ($orderId !== '') {
+            $this->db->where("id in ($orderId)");
+        } else {
+            $this->db->where('status', 1);
+        }
+        
         $this->db->order_by('created', 'DESC');
         $query = $this->db->get('orders', 50);
         $queryData = $query->result();

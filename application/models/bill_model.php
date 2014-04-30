@@ -56,10 +56,28 @@ class Bill_model extends CI_Model {
         $queryData = $query->result();
         $result = array();
         foreach ($queryData as $row) {
-            $row->created_data = date('d/m/Y', $row->created);
+            $row->created_text = date('d/m/Y', $row->created);
             $row->status_text = $this->formatStatus($row->status);
         }
         return $queryData;
+    }
+    
+    function update($billId, $data) {
+        $this->db->where('bill_id', $billId);
+        $this->db->update('bills', $data);
+    }
+    
+    function getById($billId, $userId) {
+        $this->db->where('user_id', $userId);
+        $this->db->where('bill_id', $billId);
+        $query = $this->db->get('bills', 50);
+        if ($query->num_rows === 0) {
+            return array();
+        }
+        $row = $query->row();
+        $row->created_text = date('d/m/Y', $row->created);
+        $row->status_text = $this->formatStatus($row->status);
+        return $row;
     }
     
     function formatStatus($status) {

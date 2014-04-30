@@ -38,7 +38,7 @@
             <tr>
                 <td><?php echo $index + 1; ?></td>
                 <td><a href="/index.php/bill/edit/<?php echo $bill->bill_id; ?>"><?php echo $bill->code; ?></a></td>
-                <td><?php echo $bill->created_data; ?></td>
+                <td><?php echo $bill->created_text; ?></td>
                 <td><?php echo $bill->note; ?></td>
                 <td><?php echo $bill->status_text; ?></td>
             </tr>

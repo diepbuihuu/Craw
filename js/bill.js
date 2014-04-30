@@ -105,10 +105,18 @@ $(document).ready(function(){
         $tr.addClass('changed');
         var amount = parseInt($.trim($(this).val()));
         var price = parseFloat($.trim($tr.find('.price_cell').text()));
+        var ship_fee = 0;
+        if (typeof page !== 'undefined' && page === 'bill_confirm'){
+            ship_fee = parseFloat($.trim($tr.find('.ship_fee_cell2').text()));
+            if (isNaN(ship_fee)) {
+                ship_fee = 0;
+            }
+        }
+        
         if (isNaN(amount) || amount < 0) {
             $(this).val('0');
         } else {
-            var fee = price * amount;
+            var fee = price * amount + ship_fee;
             $tr.find('.fee_cell').html(fee);
             calculateTotal();
         }
@@ -145,6 +153,25 @@ $(document).ready(function(){
         })
         $('#order_table tbody tr[abbr=total]').find('.amount_total').text(total_amount);
         $('#order_table tbody tr[abbr=total]').find('.fee_total').text(total_fee);
+        if (typeof page !== 'undefined' && page === 'bill_confirm'){
+            calculateTotalShipFee();
+        }
+    }
+    
+    function calculateTotalShipFee() {
+        var total_ship_fee = 0;
+        $('#order_table tbody tr').each(function(){
+            if ($(this).attr('abbr') !== 'total') {
+                var ship_fee = parseFloat($.trim($(this).find('.ship_fee_cell2').text()))
+
+                if (!isNaN(ship_fee)) {
+                    total_ship_fee += ship_fee;
+                }
+                
+            }
+        })
+        $('#order_table tbody tr[abbr=total]').find('.ship_fee_total').text(total_ship_fee);
+
     }
     
     $('#create_bill').click(function(){
@@ -152,6 +179,50 @@ $(document).ready(function(){
             {
                 delete_order: $('#delete_order').val(),
                 update_order: getBillData()
+            }
+            ,function(json) {
+                try {
+                    var response = JSON.parse(json);
+                    if (response.status == '1') {
+                        window.location.href = '/index.php/bill';
+                    } else {
+                        alert(response.message);
+                    }
+                } catch (e) {
+                    console.log(json);
+                }
+                
+            })
+    })
+    
+    $('#update_bill').click(function(){
+        $.post("/index.php/bill/edit_action",
+            {
+                delete_order: $('#delete_order').val(),
+                update_order: getBillData(),
+                bill_id: $('#bill_id').val(),
+                update_type: 'resent'
+            }
+            ,function(json) {
+                try {
+                    var response = JSON.parse(json);
+                    if (response.status == '1') {
+                        window.location.href = '/index.php/bill';
+                    } else {
+                        alert(response.message);
+                    }
+                } catch (e) {
+                    console.log(json);
+                }
+                
+            })
+    })
+    
+    $('#confirm_bill').click(function(){
+        $.post("/index.php/bill/edit_action",
+            {
+                bill_id: $('#bill_id').val(),
+                update_type: 'confirm'
             }
             ,function(json) {
                 try {

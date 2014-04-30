@@ -47,8 +47,75 @@ class Bill extends Nhabuon {
         $this->load->view('bill/create',$data);
     }
     
-    function edit(){
-        echo 'Release soon';
+    function edit($billId = null){
+        if (empty($billId)) {
+            die('Invalid request');
+        }
+        $userId = $this->session->userdata('user_id');
+        $bill = $this->bill_model->getById($billId, $userId);
+        if (empty($bill)) {
+            die('You are not allow to see this bill');
+        }
+        $orderIds = $bill->order_item;
+        $user = $this->user_model->get($userId);
+        $orders = $this->order_model->getByUser($userId, $orderIds);
+        $provinces = $this->user_model->getProvinces();
+        $districts = $this->user_model->getDistricts($user->province_id);
+        $towns = $this->user_model->getTowns($user->district_id);
+        $data = compact('user', 'provinces', 'districts', 'towns', 'orders', 'bill');
+
+        if ($bill->status === '1') {
+            $this->load->view('bill/view_sented', $data);
+        } else if ($bill->status === '2') {
+            $this->load->view('bill/confirm',$data);
+        } else {
+            $this->load->view('bill/view_confirmed',$data);
+        }
+    }
+    
+    function edit_action() {
+        try {
+            $userId = $this->session->userdata('user_id');
+            $update_type = $this->input->post("update_type");
+            
+            if ($update_type === 'resent') {
+                $deleteOrder = json_decode($this->input->post("delete_order"));
+                $updateOrder =  json_decode($this->input->post("update_order"),true);
+
+                $add = $this->order_model->addOrderToBill($updateOrder);
+                if (!$add) {
+                    echo '{"status":"0","message":"' . $this->order_model->message . '"}';
+                    return;
+                }
+                if (!empty($deleteOrder)){
+                    $this->order_model->delete($userId, $deleteOrder);
+                }
+
+                $billId = $this->input->post("bill_id");
+                $data = array(
+                    'order_item' => implode(',', $updateOrder['ids']),
+                    'created' => time() + 7 * 3600,
+                    'status' => 1
+                ); 
+                $this->bill_model->update($billId, $data);
+                echo '{"status":"1","message":"Complete successfully"}';
+            } else if ($update_type === 'confirm') {
+                $billId = $this->input->post("bill_id");
+                $data = array(
+                    'created' => time() + 7 * 3600,
+                    'status' => 3
+                ); 
+                $this->bill_model->update($billId, $data);
+                echo '{"status":"1","message":"Complete successfully"}';
+            } else {
+                echo '{"status":"1","message":"Complete successfully"}';
+            }
+            
+
+        } catch (Exception $ex) {
+            echo '{"status":"0","message":"' . $ex->getMessage() . '"}';
+            
+        }
     }
     
     function create_action() {
@@ -66,7 +133,7 @@ class Bill extends Nhabuon {
                 $this->order_model->delete($userId, $deleteOrder);
             }
             
-            $date = date('m.d.Y');
+            $date = date('m.d.Y', time() + 7 * 3600);
             $numberInDay = $this->bill_model->getNumberInDay($userId, $date);
 
             $data = array(
@@ -75,7 +142,7 @@ class Bill extends Nhabuon {
                 'number_in_day' => $numberInDay,
                 'code' => $this->bill_model->getCode($userId, $date, $numberInDay),
                 'order_item' => implode(',', $updateOrder['ids']),
-                'created' => time()
+                'created' => time() + 7 * 3600
             ); 
             $this->bill_model->insert($data);
             echo '{"status":"1","message":"Complete successfully"}';
