@@ -137,6 +137,10 @@ class User_model extends CI_Model {
             'user_id' => $user->id
         );
         
+        if ($user->role_id === '1') {
+            $sessionData['is_admin'] = 1;
+        }
+        
         $this->session->set_userdata($sessionData);
         return true;
     }

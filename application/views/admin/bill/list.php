@@ -1,13 +1,13 @@
 <link href="/css/bill.css" rel="stylesheet">
 <div class="header">
-    <a class="link_to_order" href="/index.php/bill">Đơn hàng của tôi</a>
+    <a class="link_to_order" href="/index.php/admin/bill">Đơn hàng</a>
 </div>
 <div style="margin-top: 30px;">
     <ul id="bill_filter" class="horizontal">
-        <li><a href="/index.php/bill">Tat ca</a></li>
-        <li><a href="/index.php/bill?status=1">Da gui</a></li>
-        <li><a href="/index.php/bill?status=2">Admin da check</a></li>
-        <li><a href="/index.php/bill?status=3">Da chot</a></li>
+        <li><a href="/index.php/admin/bill">Tat ca</a></li>
+        <li><a href="/index.php/admin/bill?status=1">Da gui</a></li>
+        <li><a href="/index.php/admin/bill?status=2">Admin da check</a></li>
+        <li><a href="/index.php/admin/bill?status=3">Da chot</a></li>
     </ul>
 </div>
 <div style="clear: both"></div>
@@ -37,7 +37,7 @@
             <?php foreach ($bills as $index => $bill):?>
             <tr>
                 <td><?php echo $index + 1; ?></td>
-                <td><a href="/index.php/bill/edit/<?php echo $bill->bill_id; ?>"><?php echo $bill->code; ?></a></td>
+                <td><a href="/index.php/admin/bill/edit/<?php echo $bill->user_id; ?>/<?php echo $bill->bill_id; ?>"><?php echo $bill->code; ?></a></td>
                 <td><?php echo $bill->created_text; ?></td>
                 <td><?php echo $bill->note; ?></td>
                 <td><?php echo $bill->status_text; ?></td>

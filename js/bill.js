@@ -106,8 +106,13 @@ $(document).ready(function(){
         var amount = parseInt($.trim($(this).val()));
         var price = parseFloat($.trim($tr.find('.price_cell').text()));
         var ship_fee = 0;
-        if (typeof page !== 'undefined' && page === 'bill_confirm'){
-            ship_fee = parseFloat($.trim($tr.find('.ship_fee_cell2').text()));
+        if (typeof page !== 'undefined'){
+            if (page === 'bill_confirm') {
+                ship_fee = parseFloat($.trim($tr.find('.ship_fee_cell2').text()));
+            } else if (page === 'bill_check_admin') {
+                ship_fee = parseFloat($.trim($tr.find('.ship_fee').val()));
+            }
+            
             if (isNaN(ship_fee)) {
                 ship_fee = 0;
             }
@@ -153,16 +158,24 @@ $(document).ready(function(){
         })
         $('#order_table tbody tr[abbr=total]').find('.amount_total').text(total_amount);
         $('#order_table tbody tr[abbr=total]').find('.fee_total').text(total_fee);
-        if (typeof page !== 'undefined' && page === 'bill_confirm'){
+        if (typeof page !== 'undefined' && page === 'bill_confirm' || page === 'bill_check_admin'){
             calculateTotalShipFee();
         }
     }
+    
+    $('.ship_fee').change(function(){
+        $(this).closest('tr').find('.amount_value').trigger('change');
+    })
     
     function calculateTotalShipFee() {
         var total_ship_fee = 0;
         $('#order_table tbody tr').each(function(){
             if ($(this).attr('abbr') !== 'total') {
-                var ship_fee = parseFloat($.trim($(this).find('.ship_fee_cell2').text()))
+                if (page === 'bill_confirm') {
+                    ship_fee = parseFloat($.trim($(this).find('.ship_fee_cell2').text()));
+                } else if (page === 'bill_check_admin') {
+                    ship_fee = parseFloat($.trim($(this).find('.ship_fee').val()));
+                }
 
                 if (!isNaN(ship_fee)) {
                     total_ship_fee += ship_fee;
@@ -239,6 +252,28 @@ $(document).ready(function(){
             })
     })
     
+    $('#admin_confirm_bill').click(function(){
+        $.post("/index.php/admin/bill/edit_action",
+            {
+                update_order: getBillDataForAdmin(),
+                bill_id: $('#bill_id').val(),
+                user_id: $('#user_id').val()
+            }
+            ,function(json) {
+                try {
+                    var response = JSON.parse(json);
+                    if (response.status == '1') {
+                        window.location.href = '/index.php/admin/bill';
+                    } else {
+                        alert(response.message);
+                    }
+                } catch (e) {
+                    console.log(json);
+                }
+                
+            })
+    })
+    
     function getBillData() {
         var updateData = [];
         var ids = [];
@@ -253,5 +288,34 @@ $(document).ready(function(){
             }
         })
         return JSON.stringify({ids:ids, update_data: updateData});
+    }
+    
+    function getBillDataForAdmin() {
+        var updateData = [];
+        var ids = [];
+         $('#order_table tbody tr').each(function(){
+            if ($(this).attr('abbr') !== 'total') {
+                var id = $(this).attr('abbr');
+                var ship_fee = $.trim($(this).find('.ship_fee').val());
+                var transportation_code = $.trim($(this).find('.transportation_code').val());
+                var transportation_process = $.trim($(this).find('.transportation_process').val());
+                ids.push(id);
+                updateData.push({id: id, ship_fee:ship_fee, transportation_code:transportation_code, transportation_process: transportation_process});
+            }
+        })
+        return JSON.stringify({ids:ids, update_data: updateData});
+    }
+    
+    function formatNumber(number) {
+        var str = '' + parseInt(number);
+        var result = '';
+        while (str.length > 3) {
+            var endPart = str.substr(-3);
+            result = endPart + ',' + result;
+            str = str.substr(0, str.length - 3);
+        }
+        result = str + ',' + result;
+        result = result.substr(0,result.length - 1);
+        return result;
     }
 })

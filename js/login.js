@@ -23,7 +23,12 @@ $(document).ready(function(){
             , function(json) {
                 var response = JSON.parse(json);
                 if (response.status === 1) {
-                    window.location.href = "/index.php/home";
+                    if (typeof response.is_admin !== 'undefined' && response.is_admin === '1') {
+                        window.location.href = "/admin/dashboard";
+                    } else {
+                        window.location.href = "/index.php/home";
+                    }
+                    
                 } else {
                     alert(response.message);
                 }

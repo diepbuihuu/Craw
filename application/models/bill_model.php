@@ -80,6 +80,22 @@ class Bill_model extends CI_Model {
         return $row;
     }
     
+    function getAll($status) {
+        if (!empty($status)) {
+            $this->db->where('status', $status);
+        }
+        $this->db->order_by('created', 'DESC');
+        $query = $this->db->get('bills', 50);
+        $queryData = $query->result();
+        $result = array();
+        foreach ($queryData as $row) {
+            $row->created_text = date('d/m/Y', $row->created);
+            $row->status_text = $this->formatStatus($row->status);
+        }
+        return $queryData;
+
+    }
+    
     function formatStatus($status) {
         switch ($status) {
             case '1':

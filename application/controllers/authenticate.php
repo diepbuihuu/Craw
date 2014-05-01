@@ -2,8 +2,14 @@
 
 class Authenticate extends CI_Controller {
     
-    
+    /**
+     *
+     * @var User_model 
+     */
+    public $user_model;
+
     public function __construct() {  
+        unset($this->user_model);
         parent::__construct();
         $this->load->helper('url','cookie');
         $this->load->library('session');
@@ -33,6 +39,9 @@ class Authenticate extends CI_Controller {
                 "status" => 1,
                 "message" => "Complete successfully"
             );
+            if ($this->session->userdata('is_admin') == '1') {
+                $response['is_admin'] = '1';
+            }
         } else {
             $message = $this->user_model->message;
             $response = array (

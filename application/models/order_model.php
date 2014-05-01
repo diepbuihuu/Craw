@@ -52,11 +52,51 @@ class Order_model extends CI_Model {
         if (!empty($updateData)) {
             $sql .= 'number=CASE id ';
             foreach ($updateData as $data) {
-                $sql .= "WHEN {$data['id']} THEN {$data['amount']} ";
+                $sql .= "WHEN {$data['id']} THEN '{$data['amount']}' ";
             }
             $sql .= 'ELSE number END ';
             $sql .= ',';
         }
+        $sql .= 'status=2 ';
+        $sql .= 'WHERE id in (' . implode(',', $ids) . ')';
+        $this->db->query($sql);
+        return true;
+    }
+    
+    function adminUpdateBillOrder($updateOrder) {
+        $ids = $updateOrder['ids'];
+        $updateData = $updateOrder['update_data'];
+        if (empty($ids)) {
+            $this->message = "Cannot create empty bill";
+            return false;
+        }
+        
+        $sql = "UPDATE orders SET ";
+        
+        $sql .= 'ship_fee=CASE id ';
+        foreach ($updateData as $data) {
+            $sql .= "WHEN {$data['id']} THEN '{$data['ship_fee']}' ";
+        }
+        $sql .= 'ELSE ship_fee END ';
+        $sql .= ',';
+        
+        
+        $sql .= 'transportation_code=CASE id ';
+        foreach ($updateData as $data) {
+            $sql .= "WHEN {$data['id']} THEN '{$data['transportation_code']}' ";
+        }
+        $sql .= 'ELSE transportation_code END ';
+        $sql .= ',';
+        
+        
+        $sql .= 'transportation_process=CASE id ';
+        foreach ($updateData as $data) {
+            $sql .= "WHEN {$data['id']} THEN '{$data['transportation_process']}' ";
+        }
+        $sql .= 'ELSE transportation_process END ';
+        $sql .= ',';
+        
+        
         $sql .= 'status=2 ';
         $sql .= 'WHERE id in (' . implode(',', $ids) . ')';
         $this->db->query($sql);
