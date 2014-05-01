@@ -44,7 +44,11 @@ class Bill extends Nhabuon {
         $orders = $this->order_model->getByUser($userId);
 //        var_dump($provinces); die;
         $data = compact('user', 'provinces', 'districts', 'towns', 'orders');
+        $data['user_id'] = $this->session->userdata('user_id');
+        $data['username'] = $this->session->userdata('username');
+        $this->load->view('element/header',$data);
         $this->load->view('bill/create',$data);
+        $this->load->view('element/footer',$data);
     }
     
     function edit($billId = null){
@@ -63,7 +67,10 @@ class Bill extends Nhabuon {
         $districts = $this->user_model->getDistricts($user->province_id);
         $towns = $this->user_model->getTowns($user->district_id);
         $data = compact('user', 'provinces', 'districts', 'towns', 'orders', 'bill');
+        $data['user_id'] = $this->session->userdata('user_id');
+        $data['username'] = $this->session->userdata('username');
 
+        $this->load->view('element/header',$data);
         if ($bill->status === '1') {
             $this->load->view('bill/view_sented', $data);
         } else if ($bill->status === '2') {
@@ -71,6 +78,7 @@ class Bill extends Nhabuon {
         } else {
             $this->load->view('bill/view_confirmed',$data);
         }
+        $this->load->view('element/footer',$data);
     }
     
     function edit_action() {
@@ -139,6 +147,7 @@ class Bill extends Nhabuon {
             $data = array(
                 'user_id' => $userId,
                 'date' => $date,
+                'fee' => $this->input->post("order_fee"),
                 'number_in_day' => $numberInDay,
                 'code' => $this->bill_model->getCode($userId, $date, $numberInDay),
                 'order_item' => implode(',', $updateOrder['ids']),

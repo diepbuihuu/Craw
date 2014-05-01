@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Login form</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta charset="utf-8"> 
-        <!-- Bootstrap -->
-        <link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="/css/bill.css" rel="stylesheet">
-    </head>
-    <body>
         <div class="alert alert-error">
             <div id="error-message"></div>
             <div id="success-message"></div>
@@ -18,18 +8,18 @@
         </div>
         <div>
             <div style="width: 60%; float: left; margin-top: 20px;">
-                <div class="box_title">Thong tin khach hang</div>
+                <div class="news_box_title">Thông tin khách hàng</div>
                 <div class="box_content">
                     <div style="padding:4%; width: 43%; float:left;">
                         <div class="input_title">
-                            Ten
+                            Tên
                         </div>
                         <div class="input_content">
                             <input type="text" id="username" name="username" value="<?php echo $user->username; ?>">
                         </div>
 
                         <div class="input_title">
-                            Tai khoan
+                            Tài khoản
                         </div>
                         <div class="input_content">
                             <input type="text" id="account" name="account" value="<?php echo $user->account; ?>">
@@ -49,7 +39,7 @@
                     </div>
                     <div style="padding:4%; width: 40%; float:left;">
                         <div class="input_title">
-                            Thanh pho
+                            Thành phố
                         </div>
                         <div class="input_content">
                             <select id="province">
@@ -68,7 +58,7 @@
                         </div>
 
                         <div class="input_title">
-                            Quan/huyen
+                            Quận/Huyện
                         </div>
                         <div class="input_content">
                             <select id="district">
@@ -87,7 +77,7 @@
                         </div>
 
                         <div class="input_title">
-                            Phuong/xa
+                            Phường/Xã
                         </div>
                         <div class="input_content">
                             <select id="town">
@@ -105,7 +95,7 @@
                             </select>
                         </div>
                         <div class="input_title">
-                            Dia chi
+                            Địa chỉ
                         </div>
                         <div class="input_content">
                             <input type="text" id="address" name="address" value="<?php echo $user->address; ?>">
@@ -113,7 +103,7 @@
                     </div>
                     <div style="clear: both"></div>
                     <div style="margin-left: 4%; margin-bottom: 20px">
-                        <button id="update_user" class="btn btn-primary" type="button">SUA THONG TIN NHAN HANG</button>
+                        <button id="update_user" class="btn btn-primary" type="button">SỬA THÔNG TIN NHẬN HÀNG</button>
                     </div>
                 </div>
             </div>
@@ -253,19 +243,22 @@
                     <tbody>
                         <tr>
                             <td>Tổng đơn (VND)</td>
-                            <td>150,000</td>
+                            <td id="total_price">150,000</td>
                         </tr>
                         <tr>
                             <td>Ship TQ</td>
                             <td>?</td>
                         </tr>
                         <tr>
-                            <td>Phí đặt hàng (VND)</td>
-                            <td>7,500 </td>
+                            <td>
+                                Phí đặt hàng (VND)
+                                <input type="hidden" id="order_fee_value" value="?">
+                            </td>
+                            <td id="order_fee">?</td>
                         </tr>
                         <tr style="border-top: 1px solid #C9BEBE; vertical-align: bottom;">
                             <td>Tổng đơn hàng (VND)</td>
-                            <td>?</td>
+                            <td id="total_fee">?</td>
                         </tr>
                     </tbody>
                 </table>
@@ -279,10 +272,5 @@
             </div>
         </div>
 
-        <script type="text/javascript" src="/js/jquery.js"></script>
-        <script type="text/javascript" src="/js/jquery.cookie.js"></script>
         <script type="text/javascript" src="/js/bill.js"></script>
-        <script src="/js/bootstrap.min.js"></script>
-    </body>
-</html>
 

@@ -7,11 +7,15 @@
     <!-- Bootstrap -->
     <link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="/css/home.css" rel="stylesheet">
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/jquery.cookie.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
   </head>
   <body>
       <div class="row nhabuon-nav">
+          <input type="hidden" id="currency_rate" value="3365">
           <div class="span4 pading5">
-              Tỷ giá ngân hàng: 3462VNĐ / 1CNY
+              Tỷ giá ngân hàng: 3365VNĐ / 1CNY
           </div>
           <div class="span2">
                <button class="btn btn-danger" type="button">Save Link</button>

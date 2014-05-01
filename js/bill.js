@@ -158,7 +158,23 @@ $(document).ready(function(){
         })
         $('#order_table tbody tr[abbr=total]').find('.amount_total').text(total_amount);
         $('#order_table tbody tr[abbr=total]').find('.fee_total').text(total_fee);
-        if (typeof page !== 'undefined' && page === 'bill_confirm' || page === 'bill_check_admin'){
+        var currency_rate = parseInt($('#currency_rate').val());
+        var total_price = total_fee * currency_rate;
+        $('#total_price').html(formatNumber(total_price));
+        var order_fee = calculateOrderFee(total_price);
+        if (isNaN(order_fee)) {
+            $('#order_fee').html('?');
+            order_fee = 0;
+        } else if (typeof page !== 'undefined' && page !== 'bill_check_admin'){
+            $('#order_fee').html(formatNumber(order_fee));
+            $('#order_fee_value').val(order_fee);
+        }
+        
+        if (typeof page !== 'undefined' && page === 'bill_confirm') {
+            $('#total_fee').html(formatNumber(total_price + order_fee));
+        }
+               
+        if (typeof page !== 'undefined' && (page === 'bill_confirm' || page === 'bill_check_admin')){
             calculateTotalShipFee();
         }
     }
@@ -191,7 +207,8 @@ $(document).ready(function(){
          $.post("/index.php/bill/create_action",
             {
                 delete_order: $('#delete_order').val(),
-                update_order: getBillData()
+                update_order: getBillData(),
+                order_fee: $('#order_fee_value').val()
             }
             ,function(json) {
                 try {
@@ -257,12 +274,14 @@ $(document).ready(function(){
             {
                 update_order: getBillDataForAdmin(),
                 bill_id: $('#bill_id').val(),
-                user_id: $('#user_id').val()
+                user_id: $('#user_id').val(),
+                order_fee: $('#order_fee_value').val()
             }
             ,function(json) {
                 try {
                     var response = JSON.parse(json);
                     if (response.status == '1') {
+
                         window.location.href = '/index.php/admin/bill';
                     } else {
                         alert(response.message);
@@ -317,5 +336,19 @@ $(document).ready(function(){
         result = str + ',' + result;
         result = result.substr(0,result.length - 1);
         return result;
+    }
+    
+    function calculateOrderFee(price) {
+        if (price < 2000000) {
+            return parseInt($('#order_fee_value').val());
+        } else if (price < 9000000) {
+            return price * 0.07;
+        } else if (price < 49000000) {
+            return price * 0.05;
+        } else if (price < 100000000) {
+            return price * 0.04;
+        } else {
+            return 3000000;
+        }
     }
 })

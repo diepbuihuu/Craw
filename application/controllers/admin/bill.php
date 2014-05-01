@@ -74,6 +74,7 @@ class Bill extends Dashboard {
                 }
 
                 $data = array(
+                    'fee' => $this->input->post("order_fee"),
                     'created' => time() + 7 * 3600,
                     'status' => 2
                 ); 
