@@ -174,15 +174,15 @@
                                 </td>
 
                                 <td class="user_data_cell">
-                                    <?php echo trim($order->user_data); ?>
+                                    <textarea><?php echo trim($order->user_data); ?></textarea>
                                 </td>
 
                                 <td class="amount_cell">
-                                    <input class="amount_value" disabled="disabled" value="<?php echo $order->number ?>">
+                                    <input class="amount_value" value="<?php echo $order->number ?>">
                                 </td>
 
                                 <td class="price_cell">
-                                    <?php echo $order->price ?>
+                                    <input value="<?php echo $order->price ?>" style="width: 40px;">
                                 </td>
 
                                 <td class ="ship_fee_cell2">
@@ -248,7 +248,8 @@
         <input id="user_id" value="<?php echo $bill->user_id; ?>" type="hidden">
         <div style="margin: 70px;">
             <div style="margin-bottom: 70px;">
-                <button id="admin_confirm_bill" class="btn btn-large btn-primary"> Duyet </button>
+                <button id="admin_return_bill" class="btn btn-large btn-primary"> Gửi lại </button>
+                <button id="confirm_bill" class="btn btn-large btn-primary"> Chốt đơn </button>
             </div>
         </div>
         <script type="text/javascript">
@@ -257,7 +258,7 @@
 
         <script type="text/javascript" src="/js/jquery.js"></script>
         <script type="text/javascript" src="/js/jquery.cookie.js"></script>
-        <script type="text/javascript" src="/js/bill.js"></script>
+        <script type="text/javascript" src="/js/bill_admin.js"></script>
         <script type="text/javascript" src="/js/register.js"></script>
         <script src="/js/bootstrap.min.js"></script>
     </body>

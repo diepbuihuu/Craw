@@ -4,6 +4,7 @@ class Nhabuon extends CI_Controller {
     
     public function __construct() {  
         parent::__construct();
+        date_default_timezone_set("UTC"); 
         $this->load->helper('url','cookie');
         $this->load->library('session');
     }

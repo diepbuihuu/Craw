@@ -104,7 +104,7 @@ $(document).ready(function(){
         var $tr = $(this).closest('tr');
         $tr.addClass('changed');
         var amount = parseInt($.trim($(this).val()));
-        var price = parseFloat($.trim($tr.find('.price_cell').text()));
+        var price = parseFloat($.trim($tr.find('.price_cell input').val()));
         var ship_fee = 0;
         if (typeof page !== 'undefined'){
             if (page === 'bill_confirm') {
@@ -180,6 +180,10 @@ $(document).ready(function(){
     }
     
     $('.ship_fee').change(function(){
+        $(this).closest('tr').find('.amount_value').trigger('change');
+    })
+    
+    $('.price_cell input').change(function(){
         $(this).closest('tr').find('.amount_value').trigger('change');
     })
     
@@ -315,11 +319,16 @@ $(document).ready(function(){
          $('#order_table tbody tr').each(function(){
             if ($(this).attr('abbr') !== 'total') {
                 var id = $(this).attr('abbr');
+                var category = $.trim($(this).find('.user_data_cell textarea').val());
+                var number = $.trim($(this).find('.amount_value').val());
+                var price = $.trim($(this).find('.price_cell input').val());
                 var ship_fee = $.trim($(this).find('.ship_fee').val());
                 var transportation_code = $.trim($(this).find('.transportation_code').val());
                 var transportation_process = $.trim($(this).find('.transportation_process').val());
                 ids.push(id);
-                updateData.push({id: id, ship_fee:ship_fee, transportation_code:transportation_code, transportation_process: transportation_process});
+                updateData.push({id: id, ship_fee:ship_fee, transportation_code:transportation_code, 
+                                transportation_process: transportation_process, category: category,
+                                price: price, number: number});
             }
         })
         return JSON.stringify({ids:ids, update_data: updateData});

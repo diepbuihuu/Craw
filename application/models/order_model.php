@@ -73,6 +73,27 @@ class Order_model extends CI_Model {
         
         $sql = "UPDATE orders SET ";
         
+        $sql .= 'number=CASE id ';
+        foreach ($updateData as $data) {
+            $sql .= "WHEN {$data['id']} THEN '{$data['number']}' ";
+        }
+        $sql .= 'ELSE number END ';
+        $sql .= ',';
+        
+        $sql .= 'user_data=CASE id ';
+        foreach ($updateData as $data) {
+            $sql .= "WHEN {$data['id']} THEN '{$data['category']}' ";
+        }
+        $sql .= 'ELSE user_data END ';
+        $sql .= ',';
+        
+        $sql .= 'price=CASE id ';
+        foreach ($updateData as $data) {
+            $sql .= "WHEN {$data['id']} THEN '{$data['price']}' ";
+        }
+        $sql .= 'ELSE price END ';
+        $sql .= ',';
+        
         $sql .= 'ship_fee=CASE id ';
         foreach ($updateData as $data) {
             $sql .= "WHEN {$data['id']} THEN '{$data['ship_fee']}' ";

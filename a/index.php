@@ -1,4 +1,8 @@
 <?php
+
+
+
+echo date('H:i:s',time()); die;
 // Create a curl handle
 $ch = curl_init('http://s.taobao.com/search?spm=a214x.6760217.991146337.60.JIg96L&initiative_id=staobaoz_20140327&js=1&q=%CD%D0%C2%ED%CB%B9&stats_click=search_radio_all%3A1');
 
