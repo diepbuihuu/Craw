@@ -19,7 +19,18 @@ class User extends CI_Controller {
     }
     
     function edit() {
-        echo '1234';
+        $userId = $this->session->userdata('user_id');
+        $user = $this->user_model->get($userId);
+        $provinces = $this->user_model->getProvinces();
+        $districts = $this->user_model->getDistricts($user->province_id);
+        $towns = $this->user_model->getTowns($user->district_id);
+//        var_dump($provinces); die;
+        $data = compact('user', 'provinces', 'districts', 'towns', 'orders');
+        $data['user_id'] = $this->session->userdata('user_id');
+        $data['username'] = $this->session->userdata('username');
+        $this->load->view('element/header',$data);
+        $this->load->view('user/edit',$data);
+        $this->load->view('element/footer',$data);
     }
     
     function register() {
@@ -28,6 +39,14 @@ class User extends CI_Controller {
         $this->load->view('user/register',$data);
     }
     
+    function changePassword() {
+        $data['user_id'] = $this->session->userdata('user_id');
+        $data['username'] = $this->session->userdata('username');
+        $this->load->view('element/header',$data);
+        $this->load->view('user/changePassword',$data);
+        $this->load->view('element/footer',$data);
+    }
+
     function update_action() {
         {
         $data = array(

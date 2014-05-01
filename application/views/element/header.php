@@ -23,13 +23,31 @@
           <div class="span2 rfloat pading5">
               <a href="/index.php/order">Giỏ hàng của tôi</a>
           </div>
-          <div class="span2 rfloat pading5">
-              <?php if(isset($username)):?>
-              <a href="/index.php/user/edit"><?php echo $username; ?></a> / <a href="/index.php/authenticate/logout">Logout</a>
-              <?php else: ?>
-              <a href="/index.php/user/register">Đăng ký</a> / <a href="/index.php/authenticate">Đăng nhập</a>
-              <?php endif; ?>
+          <?php if(isset($username)):?>
+          <div class="span2 rfloat">
+              
+                  <div class="dropdown">
+                      <button class="btn dropdown-toggle sr-only" type="button" id="dropdownMenu1" data-toggle="dropdown" style="background-color: #BEC3C4; background-image: none;border:none;">
+                      <?php echo $username; ?>
+                      <span class="caret"></span>
+                    </button>   
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="/index.php/user/edit">Thông tin tài khoản</a></li>
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="/index.php/bill">Đơn hàng của tôi</a></li>
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="/index.php/bill/create">Tạo đơn hàng</a></li>
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="/index.php/order">Giỏ hàng của tôi</a></li>
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="/index.php/user/changePassword">Đổi mật khẩu</a></li>
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="/index.php/authenticate/logout">Logout</a></li>
+                    </ul>
+                  </div>
+
+              
           </div>
+          <?php else: ?>
+          <div class="span2 rfloat pading5">
+              <a href="/index.php/user/register">Đăng ký</a> / <a href="/index.php/authenticate">Đăng nhập</a>
+          </div>    
+        <?php endif; ?>
 
       </div>
       <div class="slogan">
