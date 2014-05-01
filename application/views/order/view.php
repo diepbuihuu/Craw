@@ -37,7 +37,7 @@
                     <?php endif; ?>
                     <td class="pro_link_cell">
                         <div class="wid200">
-                            <?php echo trim($order->product_link); ?>
+                            <a href="<?php echo trim($order->mylink); ?>" target="_blank"><?php echo trim($order->mylink); ?></a>
                         </div>             
                     </td>
                     <td class="pro_name_cell">

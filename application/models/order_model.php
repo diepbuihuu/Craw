@@ -134,9 +134,25 @@ class Order_model extends CI_Model {
         $result = array();
         foreach ($orders as $index => $order) {
             $order->price = $this->formatNumber($order->price);
+            $order->mylink = $this->formatLink($order->product_link);
             $result [] = $order;
         }
         return $result;
+    }
+    
+    function formatLink($link) {
+        $hostname = $_SERVER['HTTP_HOST'];
+        if (strpos($link, 'taobao') !== FALSE) {
+            $origin = 'taobao';
+        } else if (strpos($link, 'tmall') !== FALSE) {
+            $origin = 'tmall';
+        } else if (strpos($link, '1688') !== FALSE) {
+            $origin = 'alibaba';
+        } else {
+            return $link;
+        }
+        $newLink = 'http://' . $hostname . '/index.php/' . $origin . '?url=' . urlencode($link);
+        return $newLink;
     }
     
     function formatNumber($str) {

@@ -1,6 +1,6 @@
 <?php
 
-
+var_dump($_SERVER); die;
 
 echo date('H:i:s',time()); die;
 // Create a curl handle
