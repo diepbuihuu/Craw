@@ -47,6 +47,39 @@ class Alibaba extends Nhabuon {
 //        $output = $output . $injectObject;
         echo $output;
     }
+    
+    function company_search() {
+        
+        $requestURL = $_SERVER['REQUEST_URI'];
+        $url = str_replace('/index.php/alibaba/company_search', 'http://s.1688.com/company/company_search.htm', $requestURL);
+        
+        $this->sendRequestAlibaba($url);
+    }
+    
+    function offer_search() {
+        
+        $requestURL = $_SERVER['REQUEST_URI'];
+        $url = str_replace('/index.php/alibaba/offer_search', 'http://s.1688.com/newbuyoffer/buyoffer_search.htm', $requestURL);
+        
+        $this->sendRequestAlibaba($url);
+    }
+    
+    function news_search() {
+        
+        $requestURL = $_SERVER['REQUEST_URI'];
+        $url = str_replace('/index.php/alibaba/news_search', 'http://s.1688.com/news/news_search.htm', $requestURL);
+        
+        $this->sendRequestAlibaba($url);
+    }
+    
+    function search() {
+        
+        $requestURL = $_SERVER['REQUEST_URI'];
+        $url = str_replace('/index.php/alibaba/search', 'http://s.1688.com/selloffer/offer_search.htm', $requestURL);
+        
+        $this->sendRequestAlibaba($url);
+    }
+    
    
     function index() {
         $url = $this->input->get('url');

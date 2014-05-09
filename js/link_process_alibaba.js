@@ -5,9 +5,13 @@
 
 
 $(document).ready(function() {
-    $("#J_SiteNav").remove();
+    $("#alibar").remove();
     $("#site-nav").remove();
-    $(".tb-wrapper-sub .ad.ad-p4p-baobei").remove();
+    setTimeout(function(){
+        $('.ali-search-v5 form').attr('action', '/index.php/alibaba/search');
+        $('.search-wrapper form').attr('action', '/index.php/alibaba/search');
+    }, 1000);
+    
     $('button.btn-search').click(function(){
         var userInput = $('#q').val();
         var re = /\s+/;
@@ -35,6 +39,16 @@ $(document).ready(function() {
                     $(this).attr('href', baseURL + '?url=' + encodeURIComponent(target));
                 } 
             } 
+            var action = $(this).attr('action');
+            if (action === 'http://s.1688.com/selloffer/offer_search.htm') {
+                $(this).attr('action', '/index.php/alibaba/search');
+            } else if (action === 'http://s.1688.com/company/company_search.htm') {
+                $(this).attr('action', '/index.php/alibaba/company_search');
+            } else if (action === 'http://s.1688.com/newbuyoffer/buyoffer_search.htm') {
+                $(this).attr('action', '/index.php/alibaba/offer_search');
+            } else if (action === 'http://s.1688.com/news/news_search.htm') {
+                $(this).attr('action', '/index.php/alibaba/news_search');
+            }
         } else {
             // order process
 //            var numAttr = $('.J_TSaleProp').length;
