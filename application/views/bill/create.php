@@ -288,6 +288,7 @@
                         </tbody>
                     </table>
                 </div>
+                <div style="font-size:14px;">Tỷ giá hiện tại <span>3365</span></div>
                 <table><col><col>
                     <tbody>
                         <tr>

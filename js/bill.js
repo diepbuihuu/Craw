@@ -57,6 +57,10 @@ $(document).ready(function(){
         $('#service_fee_table').hide();
     });
     
+    $('#ask_admin').click(function(){
+        alert("Đã nhắc");
+    })
+    
     function updateInfo() {
         var username = $('#username').val();
         var email = $('#email').val();

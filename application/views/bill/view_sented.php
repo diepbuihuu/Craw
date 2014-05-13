@@ -196,6 +196,40 @@
                             </tr>
                 </tbody>
             </table>
+            
+            <div id="bill_summary" style="float: right;">
+
+                <div style="font-size:14px;">Tỷ giá hiện tại <span>3365</span></div>
+                <table><col><col>
+                    <tbody>
+                        <tr>
+                            <td>Tổng đơn (VND)</td>
+                            <td id="total_price">150,000</td>
+                        </tr>
+                        <tr>
+                            <td>Ship TQ</td>
+                            <td>?</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Phí đặt hàng (VND)
+                                <input type="hidden" id="order_fee_value" value="?">
+                            </td>
+                            <td id="order_fee">?</td>
+                        </tr>
+                        <tr style="border-top: 1px solid #C9BEBE; vertical-align: bottom;">
+                            <td>Tổng đơn hàng (VND)</td>
+                            <td id="total_fee">?</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div style="margin: 70px;clear: both;">
+            <div style="float: right; margin-bottom: 70px;">
+                <button id="ask_admin"> Nhắc nhở admin check đơn </button>
+            </div>
         </div>
 
         <input id="delete_order" type="hidden">
