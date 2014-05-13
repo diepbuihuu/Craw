@@ -167,9 +167,9 @@
                                 </td>
 
                                 <td class="amount_cell">
-                                    <button class="minus">-</button>
-                                    <input class="amount_value" value="<?php echo $order->number ?>">
-                                    <button class="plus">+</button>
+                                    <button class="minus" disabled="disabled">-</button>
+                                    <input class="amount_value" disabled="disabled" value="<?php echo $order->number ?>">
+                                    <button class="plus" disabled="disabled">+</button>
                                 </td>
 
                                 <td class="price_cell">
@@ -187,7 +187,7 @@
                                     <?php echo $order->transportation_code; ?>
                                 </td>
                                 <td>
-                                    <button class="remove_button"> Xoa </button>
+                                    <button class="remove_button" disabled="disabled"> Xoa </button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -270,7 +270,8 @@
         <input id="bill_id" value="<?php echo $bill->bill_id; ?>" type="hidden">
         <div style="margin: 70px;">
             <div style="float: right; margin-bottom: 70px;">
-                <button id="update_bill" style="margin-right:30px;"> Gửi lại </button>
+                <button id="enable_edit" style="margin-right:30px;"> Sửa đơn </button>
+                <button id="update_bill" style="margin-right:30px;display: none;"> Gửi lại </button>
                 <button id="confirm_bill" > Chốt đơn </button>
             </div>
         </div>
