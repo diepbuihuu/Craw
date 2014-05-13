@@ -249,7 +249,7 @@
         <div style="margin: 70px;">
             <div style="margin-bottom: 70px;">
                 <button id="admin_return_bill" class="btn btn-large btn-primary"> Gửi lại </button>
-                <button id="confirm_bill" class="btn btn-large btn-primary"> Chốt đơn </button>
+                
             </div>
         </div>
         <script type="text/javascript">

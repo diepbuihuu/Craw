@@ -201,6 +201,18 @@
                             </tr>
                 </tbody>
             </table>
+            <div style="float: right;"><div class="dropdown">
+                      <button class="btn dropdown-toggle sr-only" type="button" id="add_product_button" data-toggle="dropdown" style="background-color: #BEC3C4; background-image: none;border:none;">
+                      Thêm sản phẩm
+                      <span class="caret"></span>
+                    </button>   
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="add_product_button">
+                      <li role="presentation"><a role="menuitem" tabindex="-1" target="_blank" href="/index.php/taobao">Taobao</a></li>
+                      <li role="presentation"><a role="menuitem" tabindex="-1" target="_blank" href="/index.php/tmall">Tmall</a></li>
+                      <li role="presentation"><a role="menuitem" tabindex="-1" target="_blank" href="/index.php/alibaba">1688</a></li>
+
+                    </ul>
+                  </div></div>
         </div>
         <div>
             <div style="width: 40%; padding: 2%;float: left;">
@@ -239,6 +251,44 @@
                 </table>
             </div>
             <div id="bill_summary">
+                
+                <div id="service_fee_table">
+                    <div style="float: right" id="fee_table_hide">
+                        <a href="javascript:void(0)">&nbsp;Tắt&nbsp;</a>
+                    </div>
+                    <div style="clear: both"></div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Giá đơn hàng</th>
+                                <th>Phí dịch vụ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Dưới 2 triệu</td>
+                                <td>Tính giá lẻ</td>
+                            </tr>
+                            <tr>
+                                <td>2 - 9 triệu</td>
+                                <td>7% đơn hàng</td>
+                            </tr>
+                            <tr>
+                                <td>10 - 49 triệu</td>
+                                <td>5% đơn hàng</td>
+                            </tr>
+                            <tr>
+                                <td>50 - 100 triệu</td>
+                                <td>4% đơn hàng</td>
+                            </tr>
+                            <tr>
+                                <td>Trên 100 triệu</td>
+                                <td>3 triệu</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div style="font-size:14px;">Tỷ giá hiện tại <span>3365</span></div>
                 <table><col><col>
                     <tbody>
                         <tr>
@@ -255,6 +305,9 @@
                                 <input type="hidden" id="order_fee_value" value="?">
                             </td>
                             <td id="order_fee">?</td>
+                            <td style="font-size: 18px;" id="fee_table_show">
+                                <a href="javascript:void(0)" >Bảng phí dịch vụ</a>
+                            </td>
                         </tr>
                         <tr style="border-top: 1px solid #C9BEBE; vertical-align: bottom;">
                             <td>Tổng đơn hàng (VND)</td>
