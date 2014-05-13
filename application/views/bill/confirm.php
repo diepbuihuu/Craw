@@ -271,6 +271,7 @@
         <div style="margin: 70px;">
             <div style="float: right; margin-bottom: 70px;">
                 <button id="update_bill" style="margin-right:30px;"> Gửi lại </button>
+                <button id="confirm_bill" > Chốt đơn </button>
             </div>
         </div>
         <script type="text/javascript">
