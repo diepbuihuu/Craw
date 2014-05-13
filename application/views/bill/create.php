@@ -271,6 +271,8 @@
                 Gửi đơn để chúng tôi có thể kiểm tra phí ship nội địa cho bạn >> <button id="create_bill"> Gửi đơn </button>
             </div>
         </div>
-
+        <script type="text/javascript">
+            var page = 'bill_create';
+        </script>
         <script type="text/javascript" src="/js/bill.js"></script>
 

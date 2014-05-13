@@ -147,8 +147,9 @@
                 </th>
                 </thead>
                 <?php $i = 1; ?>
-                <tbody>
+                
                     <?php foreach ($orders as $shopName => $shopOrders): ?>
+                    <tbody>
                         <?php foreach ($shopOrders as $index => $order): ?>
                             <tr abbr="<?php echo $order->id; ?>">
 
@@ -175,35 +176,38 @@
                                 <td class="price_cell">
                                     <?php echo $order->price ?>
                                 </td>
-
-                                <td class ="ship_fee_cell2">
+                                <?php if($index === 0): ?>
+                                <td class="ship_fee_cell" rowspan="<?php echo count($shopOrders); ?>">
                                     <?php echo $order->ship_fee; ?>
                                 </td>
-
-                                <td class="fee_cell">
-                                    <?php echo floatval($order->price) * intval($order->number) + floatval($order->ship_fee); ?>
+                                
+                                <td class="fee_cell" rowspan="<?php echo count($shopOrders); ?>">
+                                    0
                                 </td>
-                                <td>
+                                <td class="transportation_code" rowspan="<?php echo count($shopOrders); ?>">
                                     <?php echo $order->transportation_code; ?>
                                 </td>
+                                <?php endif; ?>
                                 <td>
                                     <button class="remove_button"> Xoa </button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
+                    </tbody>
                     <?php endforeach; ?>
-                            <tr abbr="total">
-                                <td></td>
-                                <td>Tong</td>
-                                <td></td>
-                                <td class="amount_total">0</td>
-                                <td></td>
-                                <td class="ship_fee_total">?</td>
-                                <td class="fee_total">0</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
+                <tbody>
+                        <tr abbr="total">
+                            <td></td>
+                            <td>Tong</td>
+                            <td></td>
+                            <td class="amount_total">0</td>
+                            <td></td>
+                            <td class="ship_fee_total">?</td>
+                            <td class="fee_total">0</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
                 </tbody>
             </table>
         </div>
@@ -276,6 +280,6 @@
         <script type="text/javascript">
             var page = 'bill_confirm';
         </script>
-        <script type="text/javascript" src="/js/bill.js"></script>
+        <script type="text/javascript" src="/js/bill_confirm.js"></script>
 
 

@@ -141,7 +141,26 @@ $(document).ready(function(){
         $amount_value.trigger('change');
     })
     
+    function calculateShopFee() {
+        
+        $('#order_table tbody').each(function(){
+            var shop_fee = 0;
+            $(this).find('tr').each(function(){
+                if ($(this).attr('abbr') !== 'total') {
+                    var amount = parseInt($.trim($(this).find('.amount_cell .amount_value').val()));
+                    var price = parseFloat($.trim($(this).find('.price_cell').text()));
+                    if (!isNaN(amount) && !isNaN(price)) {
+                        shop_fee += amount * price;
+                    }
+                }
+            }) 
+            shop_fee += parseFloat($.trim($(this).find('.ship_fee_cell').text()));
+            $(this).find('.fee_cell').html(shop_fee);
+        })
+    }
+    
     function calculateTotal() {
+        calculateShopFee();
         var total_amount = 0, total_fee = 0;
         $('#order_table tbody tr').each(function(){
             if ($(this).attr('abbr') !== 'total') {
