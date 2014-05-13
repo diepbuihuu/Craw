@@ -50,6 +50,13 @@ $(document).ready(function(){
         
     })
     
+    $('#fee_table_show').click(function() {
+        $('#service_fee_table').show();
+    });
+    $('#fee_table_hide').click(function() {
+        $('#service_fee_table').hide();
+    });
+    
     function updateInfo() {
         var username = $('#username').val();
         var email = $('#email').val();

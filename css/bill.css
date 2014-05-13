@@ -60,13 +60,14 @@ body {
     vertical-align: middle;
 }
 #bill_summary {
-    width: 40%; padding: 2%;float: left;margin-top: 30px;
+    width: 50%; padding: 2%;float: left;margin-top: 30px;
     font-size: 30px;
 }
 #bill_summary tr {
     height: 40px;
 }
 #bill_summary tr :nth-child(2) {text-align: right;}
+#bill_summary tr :nth-child(1) {text-align: left;}
 input.amount_value{
     width: 30px;
     text-align: center;
@@ -84,4 +85,19 @@ ul.horizontal li {
 }
 .ship_fee{
     width: 30px;
+}
+
+#service_fee_table {
+    position: absolute;
+    padding: 20px;
+    background-color: white;
+    display: none;
+}
+
+#service_fee_table {
+    margin-left: 200px;
+    font-size: 14px;
+}
+#service_fee_table td {
+    min-width: 150px;
 }

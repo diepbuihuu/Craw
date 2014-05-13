@@ -251,6 +251,43 @@
                 </table>
             </div>
             <div id="bill_summary">
+                
+                <div id="service_fee_table">
+                    <div style="float: right" id="fee_table_hide">
+                        <a href="javascript:void(0)">&nbsp;Tắt&nbsp;</a>
+                    </div>
+                    <div style="clear: both"></div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Giá đơn hàng</th>
+                                <th>Phí dịch vụ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Dưới 2 triệu</td>
+                                <td>Tính giá lẻ</td>
+                            </tr>
+                            <tr>
+                                <td>2 - 9 triệu</td>
+                                <td>7% đơn hàng</td>
+                            </tr>
+                            <tr>
+                                <td>10 - 49 triệu</td>
+                                <td>5% đơn hàng</td>
+                            </tr>
+                            <tr>
+                                <td>50 - 100 triệu</td>
+                                <td>4% đơn hàng</td>
+                            </tr>
+                            <tr>
+                                <td>Trên 100 triệu</td>
+                                <td>3 triệu</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
                 <table><col><col>
                     <tbody>
                         <tr>
@@ -267,6 +304,9 @@
                                 <input type="hidden" id="order_fee_value" value="?">
                             </td>
                             <td id="order_fee">?</td>
+                            <td style="font-size: 18px;" id="fee_table_show">
+                                <a href="javascript:void(0)" >Bảng phí dịch vụ</a>
+                            </td>
                         </tr>
                         <tr style="border-top: 1px solid #C9BEBE; vertical-align: bottom;">
                             <td>Tổng đơn hàng (VND)</td>
