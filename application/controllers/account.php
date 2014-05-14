@@ -39,7 +39,10 @@ class Account extends CI_Controller {
 			}
 		}
 		$this->stencil->paint('account/login', $data);
-		//$this->layout->view('account/login', $data);
+	}
+	
+	function register() {
+		
 	}
 	
 	function logout() {

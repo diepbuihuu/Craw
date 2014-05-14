@@ -57,11 +57,11 @@
 					  <img style="margin-left: 5px;" src="<?php echo base_url(""); ?>images/icon_ddl.png" style="cursor:pointer;" id="icon_ddl" width="11" height="8" alt="" />
 					  </a>
 					  <ul class="dropdown-menu dropdown-menu-username" role="menu" aria-labelledby="dLabel">
-						 <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Thông tin tài khoản</a></li>
-						 <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Sản phẩm đã lưu</a></li>
-						 <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Đơn hàng của tôi</a></li>
-						 <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Giỏ hàng (<span style="color:#be2e32;">99</span>)</a></li>
-						 <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Đổi mật khẩu</a></li>
+						 <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo site_url('user/edit'); ?>">Thông tin tài khoản</a></li>
+						 <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo site_url('bill'); ?>">Đơn hàng của tôi</a></li>
+						 <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo site_url('bill/create'); ?>">Tạo đơn hàng</a></li>
+						 <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo site_url('order'); ?>">Giỏ hàng của tôi</a></li>
+						 <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo site_url('user/changePassword'); ?>">Đổi mật khẩu</a></li>
 						 <li role="presentation" class="divider"></li>
 						 <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo site_url('account/logout/'); ?>">Thoát</a></li>
 					  </ul>

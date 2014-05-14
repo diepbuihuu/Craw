@@ -8,9 +8,6 @@ class Home extends Nhabuon {
         parent::__construct();
         $this->load->library('session');
         $this->load->helper('url','cookie');
-        if (!$this->checkLogin()) {
-            redirect('/authenticate');
-        }
     }
     
     function index2() {
