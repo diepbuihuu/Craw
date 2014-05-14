@@ -207,7 +207,8 @@
         </div>
         <div>
 
-            <div id="bill_summary">
+            <div id="bill_summary" style="float: right;">
+                <div style="font-size:14px;">Tỷ giá hiện tại <span>3365</span></div>
                 <table><col><col>
                     <tbody>
                         <tr>
@@ -223,12 +224,74 @@
                         </tr>
                         <tr style="border-top: 1px solid #C9BEBE; vertical-align: bottom;">
                             <td>Tổng đơn hàng (VND)</td>
-                            <td id="total_fee">?</td>
+                            <td class="total_fee">?</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <div style="clear: both"></div>
+        </div>
+        
+        <div style="margin: 70px;clear: both;">
+            
+            <div style="float: right; margin-bottom: 70px;">
+                <div class="pay_info">
+                    <div style="float: right" id="pay_close">
+                        <a href="javascript:void(0)">&nbsp;Tắt&nbsp;</a>
+                    </div>
+                    <div style="clear: both"></div>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>Tổng đơn hàng (VND)</td>
+                                <td class="total_fee">?</td>
+                            </tr>
+                            <tr>
+                                <td><b>Thanh toán tại nhà</b></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Địa chỉ: &nbsp;
+                                </td>
+                                <td>
+                                    Gốc cây số 13
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><b>Chuyển khoản</b></td>
+                                <td></td>
+                            </tr>
+                            
+                            <tr>
+                                <td>
+                                    Chủ tài khoản: &nbsp;
+                                </td>
+                                <td>
+                                    Bùi Quang Huy
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Số tài khoản:
+                                </td>
+                                <td>
+                                    12344589754
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Điện thoại:
+                                </td>
+                                <td>
+                                    12344589754
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <button id="pay"> Thanh toán </button>
+            </div>
         </div>
         <input id="delete_order" type="hidden">
         <input id="bill_id" value="<?php echo $bill->bill_id; ?>" type="hidden">

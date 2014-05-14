@@ -10,19 +10,29 @@ $(document).ready(function(){
         updateInfo();
     });
     
+    $('#enable_edit').click(function(){
+        $(this).hide();
+        $('#update_bill').show();
+        $('.remove_button').removeAttr('disabled');
+        $('.plus').removeAttr('disabled');
+        $('.amount_value').removeAttr('disabled');
+        $('.minus').removeAttr('disabled');
+    })
+    
     $('.remove_button').click(function() {
         var $tr = $(this).closest('tr');
         if ($tr.find('.ship_fee_cell').length > 0) {
             var $fee_cell = $tr.find('.ship_fee_cell');
             var rowspan = parseInt($fee_cell.attr('rowspan'));
             if (rowspan > 1) {
-                var oldCellHtml = $fee_cell.html();
-                var newHtml = '<td rowspan="' + (rowspan -1) +  '" class="ship_fee_cell">' + oldCellHtml + '</td>';
+                var newHtml = '<td rowspan="' + (rowspan -1) +  '" class="ship_fee_cell">0</td>';
+                newHtml += '<td rowspan="' + (rowspan -1) +  '" class="fee_cell">0</td>'
+                newHtml += '<td rowspan="' + (rowspan -1) +  '" class="transportation_code"></td>'
                 $tr.next().find('.price_cell').after(newHtml);
             }
             
         } else {
-            $tmp = $tr;
+            var $tmp = $tr;
             for ($i = 0; $i < 100; $i ++) {
                 $tmp = $tmp.prev();
                 if ($tmp.find('.ship_fee_cell').length > 0) {
@@ -32,6 +42,8 @@ $(document).ready(function(){
             var $fee_cell = $tmp.find('.ship_fee_cell');
             var rowspan = parseInt($fee_cell.attr('rowspan'));
             $fee_cell.attr('rowspan', rowspan - 1);
+            $tmp.find('.fee_cell').attr('rowspan', rowspan - 1);
+            $tmp.find('.transportation_code').attr('rowspan', rowspan - 1);
         }
         
         // mark deleted order
@@ -279,7 +291,7 @@ $(document).ready(function(){
                 try {
                     var response = JSON.parse(json);
                     if (response.status == '1') {
-                        window.location.href = '/index.php/admin/bill';
+                        window.location.href = '/index.php/bill';
                     } else {
                         alert(response.message);
                     }

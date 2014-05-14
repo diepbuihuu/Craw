@@ -182,12 +182,12 @@ $(document).ready(function(){
         }
         
         if (typeof page !== 'undefined' && page === 'bill_confirm') {
-            $('#total_fee').html(formatNumber(total_price + order_fee));
+            $('.total_fee').html(formatNumber(total_price + order_fee));
         }
                
                
         if (typeof page !== 'undefined' && 
-                (page === 'bill_create' || page === 'bill_confirm' || page === 'bill_check_admin')){
+                (page === 'bill_create' || page === 'bill_confirm' || page === 'bill_check_admin' || page === 'bill_sent')){
             calculateTotalShipFee();
         }
     }
@@ -200,7 +200,7 @@ $(document).ready(function(){
         var total_ship_fee = 0;
         $('#order_table tbody tr').each(function(){
             if ($(this).attr('abbr') !== 'total') {
-                if (page === 'bill_confirm' || page === 'bill_create') {
+                if (page === 'bill_confirm' || page === 'bill_create' || page === 'bill_sent') {
                     ship_fee = parseFloat($.trim($(this).find('.ship_fee_cell2').text()));
                 } else if (page === 'bill_check_admin') {
                     ship_fee = parseFloat($.trim($(this).find('.ship_fee').val()));
@@ -304,6 +304,13 @@ $(document).ready(function(){
                 }
                 
             })
+    })
+    
+    $('#pay').click(function() {
+        $('.pay_info').show();
+    })
+    $('#pay_close').click(function() {
+        $('.pay_info').hide();
     })
     
     function getBillData() {
