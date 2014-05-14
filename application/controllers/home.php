@@ -10,7 +10,7 @@ class Home extends CI_Controller {
         $this->load->helper('url','cookie');
     }
     
-    function index() {
+    function index2() {
         $redirect_url= $this->session->userdata('redirect_url');
         if (!empty($redirect_url)) {
             $this->session->unset_userdata(array('redirect_url' => ''));
@@ -27,6 +27,11 @@ class Home extends CI_Controller {
         $this->load->view('element/footer');
     }
     
+	function index() {
+		$this->stencil->layout('layout_main');
+		$this->stencil->title('Trang Chủ');	
+		$this->stencil->paint('home/home');
+	}
 }
 
 ?>
