@@ -141,7 +141,32 @@ $(document).ready(function(){
         $amount_value.trigger('change');
     })
     
+    function calculateShopFee() {
+        
+        $('#order_table tbody').each(function(){
+            var shop_fee = 0;
+            $(this).find('tr').each(function(){
+                if ($(this).attr('abbr') !== 'total') {
+                    var amount = parseInt($.trim($(this).find('.amount_cell .amount_value').val()));
+                    var price = parseFloat($.trim($(this).find('.price_cell input').val()));
+                    if (!isNaN(amount) && !isNaN(price)) {
+                        shop_fee += amount * price;
+                    }
+                }
+            }) 
+            shop_fee += parseFloat($.trim($(this).find('.ship_fee').val()));
+            $(this).find('.fee_cell').html(shop_fee);
+        })
+    }
+    
+    $('#order_fee_value').change(function() {
+        var order_fee = parseInt($(this).val());
+        $('#total_fee').html(formatNumber(parseInt(order_fee + total_price)));
+
+    })
+    
     function calculateTotal() {
+        calculateShopFee();
         var total_amount = 0, total_fee = 0;
         $('#order_table tbody tr').each(function(){
             if ($(this).attr('abbr') !== 'total') {
@@ -159,15 +184,16 @@ $(document).ready(function(){
         $('#order_table tbody tr[abbr=total]').find('.amount_total').text(total_amount);
         $('#order_table tbody tr[abbr=total]').find('.fee_total').text(total_fee);
         var currency_rate = parseInt($('#currency_rate').val());
-        var total_price = total_fee * currency_rate;
+        total_price = total_fee * currency_rate;
         $('#total_price').html(formatNumber(total_price));
         var order_fee = calculateOrderFee(total_price);
         if (isNaN(order_fee)) {
-            $('#order_fee').html('?');
+            $('#order_fee_value').val('?');
+            $('#total_fee').html('?');
             order_fee = 0;
-        } else if (typeof page !== 'undefined' && page !== 'bill_check_admin'){
-            $('#order_fee').html(formatNumber(order_fee));
-            $('#order_fee_value').val(order_fee);
+        } else {
+            $('#order_fee_value').val(parseInt(order_fee));
+            $('#total_fee').html(formatNumber(parseInt(order_fee + total_price)));
         }
         
         if (typeof page !== 'undefined' && page === 'bill_confirm') {
@@ -322,9 +348,9 @@ $(document).ready(function(){
                 var category = $.trim($(this).find('.user_data_cell textarea').val());
                 var number = $.trim($(this).find('.amount_value').val());
                 var price = $.trim($(this).find('.price_cell input').val());
-                var ship_fee = $.trim($(this).find('.ship_fee').val());
-                var transportation_code = $.trim($(this).find('.transportation_code').val());
-                var transportation_process = $.trim($(this).find('.transportation_process').val());
+                var ship_fee = $.trim($(this).closest('tbody').find('.ship_fee').val());
+                var transportation_code = $.trim($(this).closest('tbody').find('.transportation_code').val());
+                var transportation_process = $.trim($(this).closest('tbody').find('.transportation_process').val());
                 ids.push(id);
                 updateData.push({id: id, ship_fee:ship_fee, transportation_code:transportation_code, 
                                 transportation_process: transportation_process, category: category,

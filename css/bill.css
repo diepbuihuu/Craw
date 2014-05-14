@@ -50,7 +50,7 @@ body {
     margin-top: 30px;
     border: 1px solid #C9BEBE;
 }
-.ship_fee_cell{
+.ship_fee_cell, .transportation_code_td{
     border: 1px solid #C9BEBE;
     width: 200px;
 }
@@ -67,6 +67,7 @@ body {
     height: 40px;
 }
 #bill_summary tr :nth-child(2) {text-align: right;}
+.pay_info tr :nth-child(2) {text-align: right;}
 #bill_summary tr :nth-child(1) {text-align: left;}
 input.amount_value{
     width: 30px;
@@ -92,6 +93,14 @@ ul.horizontal li {
     padding: 20px;
     background-color: white;
     display: none;
+}
+.pay_info {
+    position: absolute;
+    padding: 20px;
+    background-color: white;
+    display: none;
+    margin-top: -100px;
+    margin-left: -200px;
 }
 
 #service_fee_table {

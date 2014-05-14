@@ -233,4 +233,7 @@
         </div>
 
         <input id="delete_order" type="hidden">
+        <script type="text/javascript">
+            var page = 'bill_sent';
+        </script>
         <script type="text/javascript" src="/js/bill.js"></script>
