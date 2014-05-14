@@ -158,8 +158,8 @@
                 </th>
                 </thead>
                 <?php $i = 1; ?>
-                <tbody>
-                    <?php foreach ($orders as $shopName => $shopOrders): ?>
+                <?php foreach ($orders as $shopName => $shopOrders): ?>
+                    <tbody>
                         <?php foreach ($shopOrders as $index => $order): ?>
                             <tr abbr="<?php echo $order->id; ?>">
 
@@ -169,12 +169,12 @@
 
                                 <td class="pro_link_cell">
                                     <div class="wid200">
-                                        <?php echo trim($order->product_link); ?>
+                                        <a href="<?php echo trim($order->mylink); ?>" target="_blank"><?php echo trim($order->mylink); ?></a>
                                     </div>             
                                 </td>
 
                                 <td class="user_data_cell">
-                                    <textarea><?php echo trim($order->user_data); ?></textarea>
+                                    <?php echo trim($order->user_data); ?>
                                 </td>
 
                                 <td class="amount_cell">
@@ -184,36 +184,41 @@
                                 <td class="price_cell">
                                     <input value="<?php echo $order->price ?>" style="width: 40px;">
                                 </td>
-
-                                <td class ="ship_fee_cell2">
-                                     <input value="<?php echo $order->ship_fee; ?>" class="ship_fee">
+                                <?php if($index === 0): ?>
+                                <td class="ship_fee_cell" rowspan="<?php echo count($shopOrders); ?>">
+                                    <input value="<?php echo $order->ship_fee; ?>" class="ship_fee">
                                 </td>
-
-                                <td class="fee_cell">
-                                    <?php echo floatval($order->price) * intval($order->number) + floatval($order->ship_fee); ?>
+                                
+                                <td class="fee_cell" rowspan="<?php echo count($shopOrders); ?>">
+                                    0
                                 </td>
-                                <td>
+                                <td class="transportation_code_td" rowspan="<?php echo count($shopOrders); ?>">
                                     <input value="<?php echo $order->transportation_code ?>" class="transportation_code">
                                 </td>
-                                <td>
+                                <td rowspan="<?php echo count($shopOrders); ?>">
                                     <textarea class="transportation_process"><?php echo $order->transportation_process ?></textarea>
                                 </td>
+                                <?php endif; ?>
+
                             </tr>
                         <?php endforeach; ?>
+                    </tbody>
                     <?php endforeach; ?>
-                            <tr abbr="total">
-                                <td></td>
-                                <td>Tong</td>
-                                <td></td>
-                                <td class="amount_total">0</td>
-                                <td></td>
-                                <td class="ship_fee_total">?</td>
-                                <td class="fee_total">0</td>
-                                <td> </td>
-                                <td></td>
-                                <td></td>
-                            </tr>
+                <tbody>
+                        <tr abbr="total">
+                            <td></td>
+                            <td>Tong</td>
+                            <td></td>
+                            <td class="amount_total">0</td>
+                            <td></td>
+                            <td class="ship_fee_total"><?php echo $bill->fee; ?></td>
+                            <td class="fee_total">0</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
                 </tbody>
+                
             </table>
         </div>
         <div>
