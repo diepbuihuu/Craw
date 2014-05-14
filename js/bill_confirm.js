@@ -41,9 +41,9 @@ $(document).ready(function(){
             }
             var $fee_cell = $tmp.find('.ship_fee_cell');
             var rowspan = parseInt($fee_cell.attr('rowspan'));
-            $fee_cell.attr('rowspan', rowspan - 1);
+            $fee_cell.attr('rowspan', rowspan - 1).text('0');
             $tmp.find('.fee_cell').attr('rowspan', rowspan - 1);
-            $tmp.find('.transportation_code').attr('rowspan', rowspan - 1);
+            $tmp.find('.transportation_code').attr('rowspan', rowspan - 1).text('');
         }
         
         // mark deleted order
