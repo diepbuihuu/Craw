@@ -2,12 +2,15 @@
 
 require_once 'nhabuon.php';
 
-class Home extends CI_Controller {
+class Home extends Nhabuon {
     
     public function __construct() {  
         parent::__construct();
         $this->load->library('session');
         $this->load->helper('url','cookie');
+        if (!$this->checkLogin()) {
+            redirect('/authenticate');
+        }
     }
     
     function index() {
