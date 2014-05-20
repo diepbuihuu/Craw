@@ -11,9 +11,9 @@
       <div class="vendors">
          <p style="width:100%; border-bottom:1px solid #999999; font-weight:bold;">CLICK ĐỂ VÀO MUA HÀNG NGAY</p>
          <ul>
-            <li class="margin_r"><a href="<?php echo site_url('taobao'); ?>"><img src="<?php echo base_url(""); ?>images/logo_taobao.jpg" alt="" /></a></li>
-            <li class="margin_r"><a href="<?php echo site_url('alibaba'); ?>"><img src="<?php echo base_url(""); ?>images/1688.png" alt="" /></a></li>
-            <li class="margin_r"><a href="<?php echo site_url('tmall'); ?>"><img src="<?php echo base_url(""); ?>images/logo_thall.jpg" alt="" /></a></li>
+             <li class="margin_r"><a target="_blank" href="<?php echo site_url('taobao'); ?>"><img src="<?php echo base_url(""); ?>images/logo_taobao.jpg" alt="" /></a></li>
+            <li class="margin_r"><a target="_blank" href="<?php echo site_url('alibaba'); ?>"><img src="<?php echo base_url(""); ?>images/1688.png" alt="" /></a></li>
+            <li class="margin_r"><a target="_blank" href="<?php echo site_url('tmall'); ?>"><img src="<?php echo base_url(""); ?>images/logo_thall.jpg" alt="" /></a></li>
             <li><a href=""><img src="<?php echo base_url(""); ?>images/icon_cactrangkhac.jpg" alt="" /></a></li>
          </ul>
       </div>
